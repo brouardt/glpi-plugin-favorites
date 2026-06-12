@@ -44,7 +44,7 @@ function plugin_favorite_install(): bool
     $default_collation = DBConnection::getDefaultCollation();
     $default_key_sign  = DBConnection::getDefaultPrimaryKeySignOption();
 
-    $favorite_table = 'glpi_plugin_favorites';
+    $favorite_table = 'glpi_plugin_favorite';
 
     if (!$DB->tableExists($favorite_table)) {
         $DB->doQuery("
@@ -71,10 +71,10 @@ function plugin_favorite_uninstall(): bool
     global $DB;
 
     $config = new Config();
-    $my_config = array_keys(Config::getConfigurationValues('plugin:Favorites'));
-    $config->deleteConfigurationValues('plugin:Favorites', $my_config);
+    $my_config = array_keys(Config::getConfigurationValues('plugin:Favorite'));
+    $config->deleteConfigurationValues('plugin:Favorite', $my_config);
 
-    $favorite_table = 'glpi_plugin_favorites';
+    $favorite_table = 'glpi_plugin_favorite';
 
     $DB->doQuery("DROP TABLE IF EXISTS `$favorite_table`;");
     ProfileRight::deleteProfileRights([Favorite::$rightname]);

@@ -46,7 +46,7 @@ define("PLUGIN_FAVORITE_MAX_GLPI_VERSION", "11.0.99");
  * Init hooks of the plugin.
  * REQUIRED
  */
-function plugin_init_favorites(): void
+function plugin_init_favorite(): void
 {
     /** @var array<string, array<string, mixed>> $PLUGIN_HOOKS */
     global $PLUGIN_HOOKS;
@@ -96,7 +96,7 @@ function plugin_init_favorites(): void
  *      }
  * }
  */
-function plugin_version_favorites(): array
+function plugin_version_favorite(): array
 {
     return [
         'name'           => _n('Favori', 'Favoris', 2, 'Favoris'),
@@ -117,7 +117,7 @@ function plugin_version_favorites(): array
  * Check pre-requisites before install
  * OPTIONAL
  */
-function plugin_favorites_check_prerequisites(): bool
+function plugin_favorite_check_prerequisites(): bool
 {
     return true;
 }
@@ -128,7 +128,7 @@ function plugin_favorites_check_prerequisites(): bool
  *
  * @param bool $verbose Whether to display message on failure. Defaults to false.
  */
-function plugin_favorites_check_config(bool $verbose = false): bool
+function plugin_favorite_check_config(bool $verbose = false): bool
 {
     // Your configuration check
     return true;

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
-    <name>Favorites</name>
-    <key>favorites</key>
+    <name>Favorite</name>
+    <key>favorite</key>
     <state>development</state>
-    <logo>https://github.com/brouardt/glpi-plugin-favorite/blob/main/favorites.png?raw=true</logo>
+    <logo>/favorite.png</logo>
     <description>
         <short>
             <fr><![CDATA[Gestion de favoris. Ce plugin vous permet de gérer favoris des menus que vous utilisez le plus.]]></fr>
@@ -35,7 +35,7 @@
     <license><![CDATA[GPL v2+]]></license>
     <tags>
         <en>
-            <tag>favorites</tag>
+            <tag>favorite</tag>
         </en>
         <fr>
             <tag>favoris</tag>
