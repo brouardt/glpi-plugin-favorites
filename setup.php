@@ -61,8 +61,8 @@ function plugin_init_favorites(): void
         Plugin::registerClass('PluginFavoritesProfile', ['addtabon' => 'Profile']);
 
         // Add specific files to add to the header : javascript or css
-        $PLUGIN_HOOKS[Hooks::ADD_JAVASCRIPT]['favorites'] = 'example.js';
-        $PLUGIN_HOOKS[Hooks::ADD_CSS]['favorites']        = 'example.css';
+        $PLUGIN_HOOKS[Hooks::ADD_JAVASCRIPT]['favorites'] = 'favorites.js';
+        $PLUGIN_HOOKS[Hooks::ADD_CSS]['favorites']        = 'favorites.css';
     }
 
     $menu = Http::generateMenuSession(true);

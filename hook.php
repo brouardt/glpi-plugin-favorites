@@ -49,9 +49,10 @@ function plugin_favorites_install(): bool
     if (!$DB->tableExists($favorite_table)) {
         $DB->doQuery("
          CREATE TABLE IF NOT EXISTS `$favorite_table` (
-         `id`       INT {$default_key_sign} NOT NULL AUTO_INCREMENT,
-         `users_id` INT {$default_key_sign} NOT NULL,
-         `menu_entry` VARCHAR(255) NOT NULL
+         `id`         INT {$default_key_sign} NOT NULL AUTO_INCREMENT,
+         `users_id`   INT {$default_key_sign} NOT NULL,
+         `menu_order` SMALLINT NOT NULL DEFAULT '0',
+         `menu_url`   VARCHAR(255) NOT NULL,
          PRIMARY KEY (`id`)
          ) ENGINE=InnoDB DEFAULT CHARSET={$default_charset} COLLATE={$default_collation} ROW_FORMAT=DYNAMIC;
       ");
@@ -79,7 +80,9 @@ function plugin_favorites_uninstall(): bool
     $my_config = array_keys(Config::getConfigurationValues('plugin:Favorites'));
     $config->deleteConfigurationValues('plugin:Favorites', $my_config);
 
-    $DB->doQuery('DROP TABLE IF EXISTS `glpi_plugin_favorites`;');
+    $favorite_table = 'glpi_plugin_favorites';
+
+    $DB->doQuery("DROP TABLE IF EXISTS `$favorite_table`;");
     ProfileRight::deleteProfileRights([Favorite::$rightname]);
 
     return true;
