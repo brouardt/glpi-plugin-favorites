@@ -1,4 +1,4 @@
-# favorites
+# Favorites
 
 ## Plugin favorites pour GLPI
 
