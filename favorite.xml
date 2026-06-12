@@ -23,7 +23,7 @@
     </authors>https://github.com/brouardt/glpi-plugin-favorite.git
     <versions>
         <version>
-            <num>0.1</num>
+            <num>1.0.0</num>
             <compatibility>~11.0</compatibility>
             <download_url>https://github.com/brouardt/glpi-plugin-favorite.git</download_url>
         </version>
