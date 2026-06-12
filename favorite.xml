@@ -2,7 +2,7 @@
 <root>
     <name>Favorite</name>
     <key>favorite</key>
-    <state>development</state>
+    <state>stable</state>
     <logo>https://raw.githubusercontent.com/brouardt/glpi-plugin-favorite/main/favorite.png</logo>
     <description>
         <short>
