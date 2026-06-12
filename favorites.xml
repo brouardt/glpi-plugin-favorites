@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <name>Favorites</name>
+    <key>favorites</key>
+    <state>stable</state>
+    <logo>https://raw.githubusercontent.com/Sevengroup-IT/favorites/master/favorites.png</logo>
+    <description>
+        <short>
+            <fr><![CDATA[Gestion de favoris. Ce plugin vous permet de gérer favoris des menus que vous utilisez le plus.]]></fr>
+            <en><![CDATA[favorites management. This plugin enables you to manage your favorites into your network and associate them with elements of the inventory.<br />A mailing system allow to verify already expired or soon expired favorites.]]></en>
+        </short>
+        <long>
+            <fr><![CDATA[Ce plugin vous permet de gérer les favorites de votre réseau et de les associer à des éléments de l’inventaire.<br />Un système d'alertes mail permet de vérifier les favorites qui vont ou qui ont expirés.<br />- Utilisable depuis le helpdesk<br />- Peut être intégré au plugin environment.]]></fr>
+            <en><![CDATA[This plugin enables you to manage your favorites into your network and associate them with elements of the inventory.<br />A mailing system allow to verify already expired or soon expired favorites.<br />- Can be used with helpdesk<br />- Can be integrated into Environment plugin.]]></en>
+        </long>
+    </description>
+    <homepage>https://github.com/Sevengroup-IT/favorites</homepage>
+    <download>https://github.com/Sevengroup-IT/favorites/releases</download>
+    <issues>https://github.com/Sevengroup-IT/favorites/issues</issues>
+    <readme>https://raw.githubusercontent.com/Sevengroup-IT/favorites/master/README.md</readme>
+    <authors>
+        <author>Thierry Brouard</author>
+    </authors>
+    <versions>
+        <version>
+            <num>1.0.0</num>
+            <compatibility>~11.0</compatibility>
+            <download_url>https://github.com/Sevengroup-IT/favorites/releases/download/1.0.0/glpi-favorites-1.0.0.tar.bz2</download_url>
+        </version>
+    </versions>
+    <langs>
+        <lang>en_GB</lang>
+        <lang>fr_FR</lang>
+    </langs>
+    <license><![CDATA[GPL v2+]]></license>
+    <tags>
+        <fr>
+            <tag>favoris</tag>
+        </fr>
+        <en>
+            <tag>favorites</tag>
+        </en>
+    </tags>
+</root>
