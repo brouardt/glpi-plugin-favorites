@@ -3,7 +3,7 @@
     <name>Favorite</name>
     <key>favorite</key>
     <state>development</state>
-    <logo>https://github.com/brouardt/glpi-plugin-favorite/blob/746604a23f64fa3e4d10a9b767f70df9cae8f97f/favorite.png</logo>
+    <logo>https://github.com/brouardt/glpi-plugin-favorite/blob/746604a23f64fa3e4d10a9b767f70df9cae8f97f/favorite.png?raw=true</logo>
     <description>
         <short>
             <fr><![CDATA[Gestion de favoris. Ce plugin vous permet de gérer favoris des menus que vous utilisez le plus.]]></fr>
@@ -25,7 +25,7 @@
         <version>
             <num>1.0.0</num>
             <compatibility>~11.0</compatibility>
-            <download_url>https://github.com/brouardt/glpi-plugin-favorite.git</download_url>
+            <download_url>https://github.com/brouardt/glpi-plugin-favorite/releases</download_url>
         </version>
     </versions>
     <langs>
