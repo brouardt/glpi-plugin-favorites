@@ -62,6 +62,7 @@ function plugin_favorite_install(): bool
          `id`         INT {$default_key_sign} NOT NULL AUTO_INCREMENT,
          `users_id`   INT {$default_key_sign} NOT NULL,
          `menu_order` SMALLINT NOT NULL DEFAULT '0',
+         'menu_name'  VARCHAR(255) NOT NULL,
          `menu_url`   VARCHAR(255) NOT NULL,
          PRIMARY KEY (`id`)
          ) ENGINE=InnoDB DEFAULT CHARSET={$default_charset} COLLATE={$default_collation} ROW_FORMAT=DYNAMIC;
