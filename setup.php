@@ -51,8 +51,6 @@ function plugin_init_favorites(): void
     /** @var array<string, array<string, mixed>> $PLUGIN_HOOKS */
     global $PLUGIN_HOOKS;
 
-    $PLUGIN_HOOKS['csrf_compliant']['favorites'] = true;
-
     $plugin = new Plugin();
     if (
         $plugin->isInstalled('favorites')
@@ -63,6 +61,18 @@ function plugin_init_favorites(): void
         // Add specific files to add to the header : javascript or css
         $PLUGIN_HOOKS[Hooks::ADD_JAVASCRIPT]['favorites'] = 'favorites.js';
         $PLUGIN_HOOKS[Hooks::ADD_CSS]['favorites']        = 'favorites.css';
+
+        // Display a menu entry ?
+        Plugin::registerClass(Profile::class, ['addtabon' => ['Profile']]);
+        if (Favorite::canView()) { // Right set in change_profile hook
+            $PLUGIN_HOOKS[Hooks::MENU_TOADD]['favorites'] = [
+                'plugins' => Favorite::class,
+                'tools'   => Favorite::class
+            ];
+
+            $PLUGIN_HOOKS[Hooks::HELPDESK_MENU_ENTRY]['favorites']      = true;
+            $PLUGIN_HOOKS[Hooks::HELPDESK_MENU_ENTRY_ICON]['favorites'] = 'ti ti-heart';
+        }
     }
 
     $menu = Http::generateMenuSession(true);
@@ -93,7 +103,7 @@ function plugin_version_favorites(): array
         'version'        => PLUGIN_FAVORITES_VERSION,
         'author'         => '<a href="mailto:thierry.brouard@free.fr">Thierry Brouard</a>',
         'license'        => 'GPLv2+',
-        'homepage'       => '',
+        'homepage'       => 'https://github.com/brouardt/glpi-plugin-favorites',
         'requirements'   => [
             'glpi' => [
                 'min' => PLUGIN_FAVORITES_MIN_GLPI_VERSION,
