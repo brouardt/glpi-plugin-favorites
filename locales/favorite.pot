@@ -7,7 +7,7 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Favorite 1.0.0\n"
+"Project-Id-Version: Favorites 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-17 13:06+0200\n"
 "PO-Revision-Date: 2026-06-12 08:00+0000\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Poedit 3.9\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-msgid "Favorite Plugin"
+msgid "Favorites Plugin"
 msgstr ""
 
 msgid "Favorite"

@@ -14,12 +14,12 @@ class Favorite extends CommonDBTM
 
     public static function getTypeName($nb = 0)
     {
-        return _n('Favorite', 'Favorites', $nb, 'favorite');
+        return _n('Favorite', 'Favorites', $nb, 'favorites');
     }
 
     public static function getMenuName()
     {
-        return __s('Favorite plugin');
+        return __s('Favorites plugin');
     }
 
     public static function getMenuContent()
@@ -30,7 +30,7 @@ class Favorite extends CommonDBTM
 
         // define base menu
         $menu = [
-            'title' => __("Favorite", 'favorite'),
+            'title' => __("Favorite", 'favorites'),
             'page' => $search,
 
             // define sub-options

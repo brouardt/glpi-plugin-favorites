@@ -42,7 +42,7 @@ function plugin_favorite_install(): bool
 
     $migration = new Migration(PLUGIN_FAVORITE_VERSION);
 
-    Config::setConfigurationValues('plugin:Favorite', ['version' => PLUGIN_FAVORITE_VERSION]);
+    Config::setConfigurationValues('plugin:Favorites', ['version' => PLUGIN_FAVORITE_VERSION]);
 
     // Adds the right(s) to all pre-existing profiles with no access by default
     ProfileRight::addProfileRights([Favorite::$rightname]);
@@ -89,8 +89,8 @@ function plugin_favorite_uninstall(): bool
     global $DB;
 
     $config = new Config();
-    $my_config = array_keys(Config::getConfigurationValues('plugin:Favorite'));
-    $config->deleteConfigurationValues('plugin:Favorite', $my_config);
+    $my_config = array_keys(Config::getConfigurationValues('plugin:Favorites'));
+    $config->deleteConfigurationValues('plugin:Favorites', $my_config);
 
     ProfileRight::deleteProfileRights([Favorite::$rightname]);
 

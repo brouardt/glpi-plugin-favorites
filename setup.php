@@ -34,13 +34,13 @@
 use Glpi\Plugin\Hooks;
 use GlpiPlugin\Favorite\Favorite;
 
-define('PLUGIN_FAVORITE_VERSION', '1.0.0');
+define('PLUGIN_FAVORITES_VERSION', '1.0.0');
 
 // Minimal GLPI version, inclusive
-define("PLUGIN_FAVORITE_MIN_GLPI_VERSION", "11.0.0");
+define("PLUGIN_FAVORITES_MIN_GLPI_VERSION", "11.0.0");
 
 // Maximum GLPI version, exclusive
-define("PLUGIN_FAVORITE_MAX_GLPI_VERSION", "11.0.99");
+define("PLUGIN_FAVORITES_MAX_GLPI_VERSION", "11.0.99");
 
 /**
  * Init hooks of the plugin.
@@ -53,10 +53,10 @@ function plugin_init_favorite(): void
 
     $plugin = new Plugin();
     if (
-        $plugin->isInstalled('Favorite')
-        && $plugin->isActivated('favorite')
+        $plugin->isInstalled('Favorites')
+        && $plugin->isActivated('favorites')
     ) {
-        Plugin::registerClass('PluginFavoriteProfile', ['addtabon' => 'Profile']);
+        Plugin::registerClass('PluginFavoritesProfile', ['addtabon' => 'Profile']);
 
         // Add specific files to add to the header : javascript or css
         /*$PLUGIN_HOOKS[Hooks::ADD_CSS]['favorite'] = 'favorite.css';
@@ -65,12 +65,12 @@ function plugin_init_favorite(): void
         // Display a menu entry ?
         Plugin::registerClass(Profile::class, ['addtabon' => ['Profile']]);
         if (Favorite::canView()) { // Right set in change_profile hook
-            $PLUGIN_HOOKS[Hooks::MENU_TOADD]['favorite'] = ['plugins' => Favorite::class];
+            $PLUGIN_HOOKS[Hooks::MENU_TOADD]['favorites'] = ['plugins' => Favorite::class];
 
-            $PLUGIN_HOOKS[Hooks::ASSIGN_TO_TICKET]['favorite'] = false;
-            $PLUGIN_HOOKS[Hooks::CHANGE_PROFILE]['favorite'] = [Profile::class, 'initProfile'];
-            $PLUGIN_HOOKS[Hooks::HELPDESK_MENU_ENTRY]['favorite'] = false;
-            $PLUGIN_HOOKS[Hooks::HELPDESK_MENU_ENTRY_ICON]['favorite'] = Favorite::getIcon();
+            $PLUGIN_HOOKS[Hooks::ASSIGN_TO_TICKET]['favorites'] = false;
+            $PLUGIN_HOOKS[Hooks::CHANGE_PROFILE]['favorites'] = [Profile::class, 'initProfile'];
+            $PLUGIN_HOOKS[Hooks::HELPDESK_MENU_ENTRY]['favorites'] = false;
+            $PLUGIN_HOOKS[Hooks::HELPDESK_MENU_ENTRY_ICON]['favorites'] = Favorite::getIcon();
         }
     }
 
@@ -105,15 +105,15 @@ function plugin_init_favorite(): void
 function plugin_version_favorite(): array
 {
     return [
-        'name' => _n('Favorite', 'Favorites', 2, 'favorite'),
-        'version' => PLUGIN_FAVORITE_VERSION,
-        'author' => '<a href="mailto:thierry.brouard@free.fr">Thierry Brouard</a>',
+        'name' => _n('Favorite', 'Favorites', 2, 'favorites'),
+        'version' => PLUGIN_FAVORITES_VERSION,
+        'author' => '<a href="mailto:thierry.brouard@free.fr">Thierry Brouard</a>,Thierry Brouard',
         'license' => 'GPLv2+',
         'homepage' => 'https://github.com/brouardt/glpi-plugin-favorite',
         'requirements' => [
             'glpi' => [
-                'min' => PLUGIN_FAVORITE_MIN_GLPI_VERSION,
-                'max' => PLUGIN_FAVORITE_MAX_GLPI_VERSION,
+                'min' => PLUGIN_FAVORITES_MIN_GLPI_VERSION,
+                'max' => PLUGIN_FAVORITES_MAX_GLPI_VERSION,
             ],
         ],
     ];
@@ -140,7 +140,7 @@ function plugin_favorite_check_config(bool $verbose = false): bool
     return true;
 
     if ($verbose) {
-        echo __('Installed / not configured', 'favorite');
+        echo __('Installed / not configured', 'favorites');
     }
     return false;
 }
