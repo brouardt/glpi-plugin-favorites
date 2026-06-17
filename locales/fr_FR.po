@@ -4,25 +4,30 @@
 #
 # Translators:
 # Thierry Brouard <thierry.brouard@free.fr>, 2026
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Favorite 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-12 16:15+0200\n"
-"PO-Revision-Date: 2026-06-12 16:18+0200\n"
+"POT-Creation-Date: 2026-06-17 13:06+0200\n"
+"PO-Revision-Date: 2026-06-17 13:08+0200\n"
 "Last-Translator: Thierry Brouard <thierry.brouard@free.fr>\n"
-"Language-Team: \n"
+"Language-Team: informatique@sevengroup.fr\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.9\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 
 msgid "Favorite Plugin"
-msgstr "Greffon Favoris"
-
-msgid "Favorit"
-msgstr "Favori"
+msgstr "Greffon favori"
 
 msgid "Favorite"
+msgstr "Favori"
+
+msgid "Favorites"
 msgstr "Favoris"
+
+msgid "Installed / not configured"
+msgstr "Installé / non configuré"

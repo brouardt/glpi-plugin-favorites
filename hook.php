@@ -31,7 +31,7 @@
  * -------------------------------------------------------------------------
  */
 
-use GlpiPlugin\Favorite\Favorit;
+use GlpiPlugin\Favorite\Favorite;
 
 /**
  * Plugin install process
@@ -46,7 +46,7 @@ function plugin_favorite_install(): bool
     $default_collation = DBConnection::getDefaultCollation();
     $default_key_sign  = DBConnection::getDefaultPrimaryKeySignOption();
 
-    $favorite_table = 'glpi_plugin_favorite';
+    $favorite_table = Favorite::getTable();
 
     if (!$DB->tableExists($favorite_table)) {
         $DB->doQuery("
@@ -64,7 +64,7 @@ function plugin_favorite_install(): bool
     if( $DB->tableExists($favorite_table) ){
         $migration->addKey($favorite_table,'users_id');
     }
-    $classes = ['PluginFavoriteFavorit' => Favorit::class];
+    $classes = ['PluginFavoriteFavorit' => Favorite::class];
 
     //execute the whole migration
     $migration->executeMigration();
@@ -84,10 +84,10 @@ function plugin_favorite_uninstall(): bool
     $my_config = array_keys(Config::getConfigurationValues('plugin:Favorite'));
     $config->deleteConfigurationValues('plugin:Favorite', $my_config);
 */
-    $favorite_table = 'glpi_plugin_favorite';
+    $favorite_table = Favorite::getTable();
 
     $DB->doQuery("DROP TABLE IF EXISTS `$favorite_table`;");
-    ProfileRight::deleteProfileRights([Favorit::$rightname]);
+    ProfileRight::deleteProfileRights([Favorite::$rightname]);
 
     return true;
 }

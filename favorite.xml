@@ -29,13 +29,13 @@
         </version>
     </versions>
     <langs>
-        <lang>en_GB</lang>
+        <lang>en_US</lang>
         <lang>fr_FR</lang>
     </langs>
     <license><![CDATA[GPL v2+]]></license>
     <tags>
         <en>
-            <tag>favorite</tag>
+            <tag>favorites</tag>
         </en>
         <fr>
             <tag>favoris</tag>
