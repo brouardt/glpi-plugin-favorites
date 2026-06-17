@@ -2,7 +2,7 @@
 
 /**
  * -------------------------------------------------------------------------
- * {NAME} plugin for GLPI
+ * Favorite plugin for GLPI
  * -------------------------------------------------------------------------
  *
  * MIT License
@@ -42,6 +42,14 @@ function plugin_favorite_install(): bool
 
     $migration = new Migration(PLUGIN_FAVORITE_VERSION);
 
+    Config::setConfigurationValues('plugin:Favorite', ['version' => PLUGIN_FAVORITE_VERSION]);
+
+    // Adds the right(s) to all pre-existing profiles with no access by default
+    ProfileRight::addProfileRights([Favorite::$rightname]);
+
+    // Grants full access to profiles that can update the Config (super-admins)
+    $migration->addRight(Favorite::$rightname, ALLSTANDARDRIGHT, [Config::$rightname => UPDATE]);
+
     $default_charset   = DBConnection::getDefaultCharset();
     $default_collation = DBConnection::getDefaultCollation();
     $default_key_sign  = DBConnection::getDefaultPrimaryKeySignOption();
@@ -79,15 +87,15 @@ function plugin_favorite_uninstall(): bool
 {
     /** @var DBmysql $DB */
     global $DB;
-/*
+
     $config = new Config();
     $my_config = array_keys(Config::getConfigurationValues('plugin:Favorite'));
     $config->deleteConfigurationValues('plugin:Favorite', $my_config);
-*/
-    $favorite_table = Favorite::getTable();
 
-    $DB->doQuery("DROP TABLE IF EXISTS `$favorite_table`;");
     ProfileRight::deleteProfileRights([Favorite::$rightname]);
+
+    $favorite_table = Favorite::getTable();
+    $DB->doQuery("DROP TABLE IF EXISTS `$favorite_table`;");
 
     return true;
 }

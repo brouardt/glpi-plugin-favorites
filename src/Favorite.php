@@ -14,7 +14,7 @@ class Favorite extends CommonDBTM
 
     public static function getTypeName($nb = 0)
     {
-        return _n('Favorite', 'Favorite', $nb, 'Favorite');
+        return _n('Favorite', 'Favorites', $nb, 'favorite');
     }
 
     public static function getMenuName()

@@ -43,5 +43,5 @@ define('GLPI_LOG_LVL', 'DEBUG');
 require GLPI_ROOT . '/inc/includes.php';
 
 if (!Plugin::isPluginActive("favorite")) {
-    throw new RuntimeException("Plugin favorites is not active in the test database");
+    throw new RuntimeException("Plugin favorite is not active in the test database");
 }
