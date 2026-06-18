@@ -31,18 +31,18 @@
  * -------------------------------------------------------------------------
  */
 
-use GlpiPlugin\Favorite\Favorite;
+use GlpiPlugin\Favorites\Favorite;
 
 /**
  * Plugin install process
  */
-function plugin_favorite_install(): bool
+function plugin_favorites_install(): bool
 {
     global $DB;
 
-    $migration = new Migration(PLUGIN_FAVORITE_VERSION);
+    $migration = new Migration(PLUGIN_FAVORITES_VERSION);
 
-    Config::setConfigurationValues('plugin:Favorites', ['version' => PLUGIN_FAVORITE_VERSION]);
+    Config::setConfigurationValues('plugin:favorites', ['version' => PLUGIN_FAVORITES_VERSION]);
 
     // Adds the right(s) to all pre-existing profiles with no access by default
     ProfileRight::addProfileRights([Favorite::$rightname]);
@@ -58,15 +58,22 @@ function plugin_favorite_install(): bool
 
     if (!$DB->tableExists($favorite_table)) {
         $DB->doQuery("
-         CREATE TABLE IF NOT EXISTS `$favorite_table` (
+         CREATE TABLE IF NOT EXISTS `{$favorite_table}` (
          `id`         INT {$default_key_sign} NOT NULL AUTO_INCREMENT,
-         `users_id`   INT {$default_key_sign} NOT NULL,
-         `menu_order` SMALLINT NOT NULL DEFAULT '0',
-         `menu_name`  VARCHAR(255) NOT NULL,
-         `menu_url`   VARCHAR(255) NOT NULL,
+         `user_id`   INT {$default_key_sign} NOT NULL,
+         `order` SMALLINT NOT NULL DEFAULT '0',
+         `type` VARCHAR(32) NOT NULL,
+         `icon`  VARCHAR(64) NOT NULL,
+         `title`  VARCHAR(64) NOT NULL,
+         `page`, varchar(128) NOT NULL DEFAULT '/',
          PRIMARY KEY (`id`)
          ) ENGINE=InnoDB DEFAULT CHARSET={$default_charset} COLLATE={$default_collation} ROW_FORMAT=DYNAMIC;
       ");
+        $DB->doQuery("INSERT INTO `{$favorite_table}` (`user_id`, `order`, `type`, `icon`, `title`, `page`) 
+        VALUES 
+        ({$_SESSION['glpiID']}, 1, 'Computer', 'ti ti-device-laptop', 'Ordinateurs', '/front/computer.php'),
+        ({$_SESSION['glpiID']}, 2, 'User', 'ti ti-user', 'Utilisateurs', '/front/user.php'),
+        ({$_SESSION['glpiID']}, 3, 'Ticket', 'ti ti-alert-circle', 'Tickets', '/front/ticket.php');");
     }
 
     if( $DB->tableExists($favorite_table) ){
@@ -77,22 +84,25 @@ function plugin_favorite_install(): bool
     //execute the whole migration
     $migration->executeMigration();
 
+    Profile::createFirstAccess($_SESSION['glpiactiveprofile']['id']);
+
     return true;
 }
 
 /**
  * Plugin uninstall process
  */
-function plugin_favorite_uninstall(): bool
+function plugin_favorites_uninstall(): bool
 {
     /** @var DBmysql $DB */
     global $DB;
 
     $config = new Config();
-    $my_config = array_keys(Config::getConfigurationValues('plugin:Favorites'));
-    $config->deleteConfigurationValues('plugin:Favorites', $my_config);
+    $my_config = array_keys(Config::getConfigurationValues('plugin:favorites'));
+    $config->deleteConfigurationValues('plugin:favorites', $my_config);
 
     ProfileRight::deleteProfileRights([Favorite::$rightname]);
+    Profile::removeRightsFromSession();
 
     $favorite_table = Favorite::getTable();
     $DB->doQuery("DROP TABLE IF EXISTS `$favorite_table`;");

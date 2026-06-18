@@ -3,7 +3,7 @@
     <name>Favorites</name>
     <key>favorites</key>
     <state>stable</state>
-    <logo>https://raw.githubusercontent.com/brouardt/glpi-plugin-favorite/main/favorites.png</logo>
+    <logo>https://raw.githubusercontent.com/brouardt/glpi-plugin-favorite/main/logo.png</logo>
     <description>
         <short>
             <fr><![CDATA[Gestion de favoris. Ce plugin vous permet de gérer favoris des menus que vous utilisez le plus.]]></fr>

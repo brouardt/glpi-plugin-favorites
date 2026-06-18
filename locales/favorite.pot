@@ -30,3 +30,6 @@ msgstr ""
 
 msgid "Installed / not configured"
 msgstr ""
+
+msgid "List"
+msgstr ""
