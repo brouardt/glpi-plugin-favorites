@@ -32,6 +32,7 @@
  */
 
 use GlpiPlugin\Favorites\Favorite;
+use GlpiPlugin\Favorites\Profile;
 
 /**
  * Plugin install process
@@ -45,10 +46,10 @@ function plugin_favorites_install(): bool
     Config::setConfigurationValues('plugin:favorites', ['version' => PLUGIN_FAVORITES_VERSION]);
 
     // Adds the right(s) to all pre-existing profiles with no access by default
-    ProfileRight::addProfileRights([Favorite::$rightname]);
+//    ProfileRight::addProfileRights([Favorite::$rightname]);
 
     // Grants full access to profiles that can update the Config (super-admins)
-    $migration->addRight(Favorite::$rightname, ALLSTANDARDRIGHT, [Config::$rightname => UPDATE]);
+//    $migration->addRight(Favorite::$rightname, ALLSTANDARDRIGHT, [Config::$rightname => UPDATE]);
 
     $default_charset   = DBConnection::getDefaultCharset();
     $default_collation = DBConnection::getDefaultCollation();
@@ -58,32 +59,27 @@ function plugin_favorites_install(): bool
 
     if (!$DB->tableExists($favorite_table)) {
         $DB->doQuery("
-         CREATE TABLE IF NOT EXISTS `{$favorite_table}` (
-         `id`         INT {$default_key_sign} NOT NULL AUTO_INCREMENT,
-         `user_id`   INT {$default_key_sign} NOT NULL,
-         `order` SMALLINT NOT NULL DEFAULT '0',
-         `type` VARCHAR(32) NOT NULL,
-         `icon`  VARCHAR(64) NOT NULL,
-         `title`  VARCHAR(64) NOT NULL,
-         `page`, varchar(128) NOT NULL DEFAULT '/',
-         PRIMARY KEY (`id`)
-         ) ENGINE=InnoDB DEFAULT CHARSET={$default_charset} COLLATE={$default_collation} ROW_FORMAT=DYNAMIC;
+         CREATE TABLE IF NOT EXISTS `$favorite_table` (
+         `id`      INT $default_key_sign NOT NULL AUTO_INCREMENT,
+         `user_id` INT $default_key_sign NOT NULL,
+         `order`   SMALLINT     NOT NULL DEFAULT '0',
+         `type`    VARCHAR(32)  NOT NULL,
+         PRIMARY KEY (`id`), 
+         KEY `user_id` (`user_id`)
+         ) ENGINE=InnoDB DEFAULT CHARSET=$default_charset COLLATE=$default_collation ROW_FORMAT=DYNAMIC;
       ");
-        $DB->doQuery("INSERT INTO `{$favorite_table}` (`user_id`, `order`, `type`, `icon`, `title`, `page`) 
+        $DB->doQuery("INSERT INTO `$favorite_table` (`user_id`, `order`, `type`) 
         VALUES 
-        ({$_SESSION['glpiID']}, 1, 'Computer', 'ti ti-device-laptop', 'Ordinateurs', '/front/computer.php'),
-        ({$_SESSION['glpiID']}, 2, 'User', 'ti ti-user', 'Utilisateurs', '/front/user.php'),
-        ({$_SESSION['glpiID']}, 3, 'Ticket', 'ti ti-alert-circle', 'Tickets', '/front/ticket.php');");
+        ({$_SESSION['glpiID']}, 1, 'Computer'),
+        ({$_SESSION['glpiID']}, 2, 'User'),
+        ({$_SESSION['glpiID']}, 3, 'Ticket');");
     }
-
-    if( $DB->tableExists($favorite_table) ){
-        $migration->addKey($favorite_table,'users_id');
-    }
-    $classes = ['PluginFavoriteFavorit' => Favorite::class];
+    // $classes = ['PluginFavoriteFavorit' => Favorite::class];
 
     //execute the whole migration
     $migration->executeMigration();
 
+    Profile::initProfile();
     Profile::createFirstAccess($_SESSION['glpiactiveprofile']['id']);
 
     return true;

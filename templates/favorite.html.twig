@@ -1,0 +1,26 @@
+{% if rows is not empty %}
+    <table class="tab_cadre_fixe">
+        <tr>
+            <th colspan="6">{{ __('Favorites', 'favorites') }}</th>
+        </tr>
+        <tr>
+            <th>{{ __('Title', 'favorites') }}</th>
+        </tr>
+        {% for row in rows %}
+            <tr class="tab_bg_1">
+                <td>{{ row.icon }} {{ row.Title }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <div class="center">
+        <table class="tab_cadre_fixe">
+            <tr>
+                <th colspan="6">{{ __('Favorites', 'favorites') }}</th>
+            </tr>
+            <tr>
+                <td class="center">{{ __('No results found') }}</td>
+            </tr>
+        </table>
+    </div>
+{% endif %}

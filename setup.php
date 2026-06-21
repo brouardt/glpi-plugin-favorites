@@ -34,9 +34,17 @@
 use Glpi\Plugin\Hooks;
 use GlpiPlugin\Favorites\Favorite;
 
+global $CFG_GLPI;
+
 define('PLUGIN_FAVORITES_VERSION', '1.0.0');
 define('PLUGIN_FAVORITES_MIN_GLPI_VERSION', '11.0.0');
 define('PLUGIN_FAVORITES_MAX_GLPI_VERSION', '11.0.99');
+
+if (!defined("PLUGIN_FAVORITES_DIR")) {
+    define("PLUGIN_FAVORITES_DIR", Plugin::getPhpDir('favorites'));
+    $root = $CFG_GLPI['root_doc'] . '/plugins/favorites';
+    define("PLUGIN_FAVORITES_WEBDIR", $root);
+}
 
 /**
  * Init hooks of the plugin.
@@ -56,20 +64,18 @@ function plugin_init_favorites(): void
     $plugin = new Plugin();
     if (Session::getLoginUserID() && $plugin->isActivated('favorites')) {
 
+        if (Session::haveRight('favorite', READ)) {
+//            $PLUGIN_HOOKS[Hooks::MENU_TOADD]['favorites'] = ['favorites' => [Favorite::class]];
+            $PLUGIN_HOOKS[Hooks::REDEFINE_MENUS]['favorites'] = [Favorite::class, 'redefineMenus'];
+        }
         // Add specific files to add to the header : javascript or css
-        /*$PLUGIN_HOOKS[Hooks::ADD_CSS]['favorite'] = 'favorite.css';
-        $PLUGIN_HOOKS[Hooks::ADD_JAVASCRIPT]['favorite'] = 'favorite.js';*/
+        /*
+        $PLUGIN_HOOKS[Hooks::ADD_CSS]['favorite'] = 'favorite.css';
+        $PLUGIN_HOOKS[Hooks::ADD_JAVASCRIPT]['favorite'] = 'favorite.js';
+        */
 
-        // Display a menu entry ?
-        $PLUGIN_HOOKS[Hooks::MENU_TOADD]['favorites'] = [
-            'favorites' => [
-                'main' => Favorite::class
-            ]
-        ];
-
-        $PLUGIN_HOOKS[Hooks::CONFIG_PAGE]['favorites'] = 'front/favorites.php';
-
-        //file_put_contents('C:\Users\tbrouard\Sources\repositories\glpi-test\plugins\favorites\menu.json', json_encode($_SESSION['glpimenu']));
+        // Display a config entry
+        $PLUGIN_HOOKS[Hooks::CONFIG_PAGE]['favorites'] = '/front/favorites.php';
     }
 }
 
@@ -97,7 +103,7 @@ function plugin_version_favorites(): array
     return [
         'name' => _n('Favorite', 'Favorites', 2, 'favorites'),
         'version' => PLUGIN_FAVORITES_VERSION,
-        'author' => '<a href="mailto:thierry.brouard@free.fr">IT Seven</a>,Thierry Brouard',
+        'author' => 'Thierry Brouard',
         'license' => 'GPLv2+',
         'homepage' => 'https://github.com/brouardt/glpi-plugin-favorite',
         'requirements' => [

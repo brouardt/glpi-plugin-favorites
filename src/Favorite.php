@@ -43,28 +43,21 @@ class Favorite extends CommonDBTM
 {
     public static $rightname = 'favorite';
 
+    /**
+     * @param $nb
+     * @return string
+     */
     public static function getTypeName($nb = 0)
     {
         return _n('Favorite', 'Favorites', $nb, 'favorites');
     }
 
+    /**
+     * @return string
+     */
     public static function getMenuName()
     {
         return __s('Favorites', 'favorites');
-    }
-
-    public static function getMenuContent()
-    {
-        $menu = [];
-        $menu['title'] = self::getMenuName();
-        $menu['page'] = '/';
-        $menu['links'] = [
-            'search' => '/',
-            'lists' => ''
-        ];
-        $menu['icon'] = self::getIcon();
-
-        return $menu;
     }
 
     /**
@@ -73,5 +66,86 @@ class Favorite extends CommonDBTM
     public static function getIcon()
     {
         return "ti ti-heart";
+    }
+
+    /**
+     * @return array
+     */
+    public static function getFavoriteList()
+    {
+        global $DB;
+
+        $columns = ['id', 'user_id', 'order', 'type'];
+
+        $favorite = new Favorite();
+        $favorite->getFromDB($_SESSION['glpiID']);
+
+        $criteria = [
+            'SELECT' => $columns,
+            'FROM' => 'glpi_plugin_favorites_favorites',
+            'WHERE' => ['user_id' => $_SESSION['glpiID']],
+            'ORDERBY' => 'order ASC',
+        ];
+        $iterator = $DB->request($criteria);
+
+        $list = [];
+        if (count($iterator) > 0) {
+            foreach ($iterator as $data) {
+                if (method_exists($data['type'], 'getMenuContent')) {
+                    $list[$data['type']] = $data['type']::getMenuContent();
+                }
+            }
+        }
+
+        return $list;
+    }
+
+    /**
+     * @param $menus
+     * @return array|array[]
+     */
+    public static function redefineMenus($menus)
+    {
+        if (self::canView()) {
+            $collection = self::getFavoriteList();
+
+            $section = 'favorites';
+            $favorites_menu = [$section =>
+                [
+                    'title' => self::getMenuName(),
+                    'types' => [array_keys($collection)],
+                    'links' => [
+                        'search' => self::getSearchURL(false),
+                        'lists' => ''
+                    ],
+                    'icon' => self::getIcon(),
+                    'content' => [],
+                    'default' => '/front/favorites.php'
+                ]
+            ];
+            if (self::canCreate()) {
+                $favorites_menu['favorites']['links']['add'] = self::getFormURL(false);
+            }
+
+            $content = [];
+            if (!empty($collection)) {
+                foreach ($collection as $key => $val) {
+                    $content[strtolower($key)] = $val;
+                }
+            } else {
+                $content['default'] = [
+                    'title' => __('Default', 'favorites'),
+                    'icon' => self::getIcon(),
+                    'page' => self::getSearchURL(false),
+                    'default' => self::getSearchURL(''),
+                ];
+            }
+
+            $favorites_menu['favorites']['content'] = $content;
+
+            $menus = $favorites_menu + $menus;
+        }
+        // return favorites menu always in first
+        return $menus;
     }
 }

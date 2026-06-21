@@ -33,3 +33,9 @@ msgstr ""
 
 msgid "List"
 msgstr ""
+
+msgid "No results found"
+msgstr ""
+
+msgid "Default"
+msgstr ""

@@ -47,20 +47,6 @@ class Profile extends \Profile
 {
     public static $rightname = 'profile';
 
-    public static function getAllRights()
-    {
-        $rights = [
-            [
-                'itemtype' => Favorite::class,
-                'label' => __('Favorites', 'favorites'),
-                'field' => Favorite::$rightname,
-                'rights' => \Profile::getRightsFor(Favorite::class)
-            ]
-        ];
-
-        return $rights;
-    }
-
     public static function getIcon()
     {
         return Favorite::getIcon();
@@ -113,6 +99,7 @@ class Profile extends \Profile
     public static function addDefaultProfileInfos($profiles_id, $rights)
     {
         $profileRight = new ProfileRight();
+
         $dbu = new DbUtils();
         foreach ($rights as $right => $value) {
             if (!$dbu->countElementsInTable(
@@ -141,7 +128,7 @@ class Profile extends \Profile
         self::addDefaultProfileInfos(
             $profiles_id,
             [
-                'plugin_favorite' => ALLSTANDARDRIGHT
+                'favorite' => ALLSTANDARDRIGHT
             ]
         );
     }
@@ -158,7 +145,7 @@ class Profile extends \Profile
             'FROM' => 'glpi_profilerights',
             'WHERE' => [
                 'profiles_id' => $_SESSION['glpiactiveprofile']['id'],
-                'name' => ['LIKE', '%plugin_addressing%'],
+                'name' => ['LIKE', '%favorite%'],
             ],
         ]);
         foreach ($it as $prof) {
@@ -168,46 +155,26 @@ class Profile extends \Profile
         }
     }
 
-    public static function migrateProfiles()
-    {
-        global $DB;
-
-        if (!$DB->tableExists('glpi_plugin_addressing_profiles')) {
-            return true;
-        }
-        $dbu = new DbUtils();
-        $profiles = $dbu->getAllDataFromTable('glpi_plugin_addressing_profiles');
-        foreach ($profiles as $id => $profile) {
-            switch ($profile['addressing']) {
-                case 'r':
-                    $value = READ;
-                    break;
-                case 'w':
-                    $value = ALLSTANDARDRIGHT;
-                    break;
-                case 0:
-                default:
-                    $value = 0;
-                    break;
-            }
-            self::addDefaultProfileInfos($profile['profiles_id'], ['plugin_addressing' => $value]);
-            self::addDefaultProfileInfos(
-                $profile['profiles_id'],
-                [
-                    'plugin_addressing_use_ping_in_equipment'
-                    => $profile['use_ping_in_equipment']
-                ]
-            );
-        }
-    }
-
-
     public static function removeRightsFromSession()
     {
         foreach (self::getAllRights() as $right) {
-            if (isset($_SESSION['glpiactiveprofile'][$right['field']])) {
-                unset($_SESSION['glpiactiveprofile'][$right['field']]);
+            if (isset($_SESSION['glpiactiveprofile'][$right['favorite']])) {
+                unset($_SESSION['glpiactiveprofile'][$right['favorite']]);
             }
         }
+    }
+
+    public static function getAllRights()
+    {
+        $rights = [
+            [
+                'itemtype' => Favorite::class,
+                'label' => __('Favorites', 'favorites'),
+                'field' => Favorite::$rightname,
+                'rights' => \Profile::getRightsFor(Favorite::class)
+            ]
+        ];
+
+        return $rights;
     }
 }
