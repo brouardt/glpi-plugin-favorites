@@ -33,15 +33,19 @@
 
 use Glpi\Plugin\Hooks;
 use GlpiPlugin\Favorites\Favorite;
+use GlpiPlugin\Favorites\Profile;
 
 global $CFG_GLPI;
 
+define('PLUGIN_FAVORITES', 'favorites');
+define('PLUGIN_FAVORITES_CONFIG', 'plugin:favorites');
+define('PLUGIN_FAVORITES_RIGHTS', 'plugin_favorites');
 define('PLUGIN_FAVORITES_VERSION', '1.0.0');
 define('PLUGIN_FAVORITES_MIN_GLPI_VERSION', '11.0.0');
 define('PLUGIN_FAVORITES_MAX_GLPI_VERSION', '11.0.99');
 
 if (!defined("PLUGIN_FAVORITES_DIR")) {
-    define("PLUGIN_FAVORITES_DIR", Plugin::getPhpDir('favorites'));
+    define("PLUGIN_FAVORITES_DIR", Plugin::getPhpDir(PLUGIN_FAVORITES));
     $root = $CFG_GLPI['root_doc'] . '/plugins/favorites';
     define("PLUGIN_FAVORITES_WEBDIR", $root);
 }
@@ -55,27 +59,23 @@ function plugin_init_favorites(): void
     /** @var array<string, array<string, mixed>> $PLUGIN_HOOKS */
     global $PLUGIN_HOOKS;
 
-    $PLUGIN_HOOKS[Hooks::ASSIGN_TO_TICKET]['favorites'] = false;
-    $PLUGIN_HOOKS[Hooks::HELPDESK_MENU_ENTRY]['favorites'] = false;
-    $PLUGIN_HOOKS[Hooks::CHANGE_PROFILE]['favorites'] = [Profile::class, 'initProfile'];
+    //$PLUGIN_HOOKS[Hooks::CSRF_COMPLIANT][PLUGIN_FAVORITES]   = true;
+    $PLUGIN_HOOKS[Hooks::ASSIGN_TO_TICKET][PLUGIN_FAVORITES] = false;
+    $PLUGIN_HOOKS[Hooks::HELPDESK_MENU_ENTRY][PLUGIN_FAVORITES] = false;
+    $PLUGIN_HOOKS[Hooks::CHANGE_PROFILE][PLUGIN_FAVORITES] = [Profile::class, 'initProfile'];
 
-    Plugin::registerClass(Profile::class, ['addtabon' => ['Profile']]);
+    Plugin::registerClass(Profile::class, ['addtabon' => 'Profile']);
 
     $plugin = new Plugin();
-    if (Session::getLoginUserID() && $plugin->isActivated('favorites')) {
+    if (Session::getLoginUserID() && $plugin->isActivated(PLUGIN_FAVORITES)) {
 
-        if (Session::haveRight('favorite', READ)) {
-//            $PLUGIN_HOOKS[Hooks::MENU_TOADD]['favorites'] = ['favorites' => [Favorite::class]];
-            $PLUGIN_HOOKS[Hooks::REDEFINE_MENUS]['favorites'] = [Favorite::class, 'redefineMenus'];
+        if (Session::haveRight(PLUGIN_FAVORITES_RIGHTS, READ)) {
+            $PLUGIN_HOOKS[Hooks::REDEFINE_MENUS][PLUGIN_FAVORITES] = [Favorite::class, 'redefineMenus'];
+            $PLUGIN_HOOKS[Hooks::AUTO_GET_DROPDOWN][PLUGIN_FAVORITES] = [Favorite::class, 'getDropdown'];
         }
-        // Add specific files to add to the header : javascript or css
-        /*
-        $PLUGIN_HOOKS[Hooks::ADD_CSS]['favorite'] = 'favorite.css';
-        $PLUGIN_HOOKS[Hooks::ADD_JAVASCRIPT]['favorite'] = 'favorite.js';
-        */
 
         // Display a config entry
-        $PLUGIN_HOOKS[Hooks::CONFIG_PAGE]['favorites'] = '/front/favorites.php';
+//        $PLUGIN_HOOKS[Hooks::CONFIG_PAGE][PLUGIN_FAVORITES] = 'front/favorites.php';
     }
 }
 
@@ -101,7 +101,7 @@ function plugin_init_favorites(): void
 function plugin_version_favorites(): array
 {
     return [
-        'name' => _n('Favorite', 'Favorites', 2, 'favorites'),
+        'name' => _n('Favorite', 'Favorites', 2, PLUGIN_FAVORITES),
         'version' => PLUGIN_FAVORITES_VERSION,
         'author' => 'Thierry Brouard',
         'license' => 'GPLv2+',
@@ -136,7 +136,7 @@ function plugin_favorite_check_config(bool $verbose = false): bool
     return true;
 
     if ($verbose) {
-        echo __('Installed / not configured', 'favorites');
+        echo __('Installed / not configured', PLUGIN_FAVORITES);
     }
     return false;
 }

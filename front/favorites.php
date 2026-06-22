@@ -5,13 +5,13 @@ use GlpiPlugin\Favorites\Favorite;
 Session::checkLoginUser();
 
 Html::header(
-    __('Favorites', 'favorites'),
+    __('Favorites', PLUGIN_FAVORITES),
     $_SERVER['PHP_SELF'],
-    'favorites',
+    PLUGIN_FAVORITES,
     Favorite::class
 );
 
-Session::checkRight('config', READ);
+Session::checkRight('favorite', READ);
 
 Search::show(Favorite::class);
 

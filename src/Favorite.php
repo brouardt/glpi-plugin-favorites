@@ -41,7 +41,7 @@ if (!defined('GLPI_ROOT')) {
 
 class Favorite extends CommonDBTM
 {
-    public static $rightname = 'favorite';
+    public static $rightname = PLUGIN_FAVORITES_RIGHTS;
 
     /**
      * @param $nb
@@ -49,7 +49,7 @@ class Favorite extends CommonDBTM
      */
     public static function getTypeName($nb = 0)
     {
-        return _n('Favorite', 'Favorites', $nb, 'favorites');
+        return _n('Favorite', 'Favorites', $nb, PLUGIN_FAVORITES);
     }
 
     /**
@@ -57,7 +57,7 @@ class Favorite extends CommonDBTM
      */
     public static function getMenuName()
     {
-        return __s('Favorites', 'favorites');
+        return __s('Favorites', PLUGIN_FAVORITES);
     }
 
     /**
@@ -109,8 +109,7 @@ class Favorite extends CommonDBTM
         if (self::canView()) {
             $collection = self::getFavoriteList();
 
-            $section = 'favorites';
-            $favorites_menu = [$section =>
+            $favorites_menu = [PLUGIN_FAVORITES =>
                 [
                     'title' => self::getMenuName(),
                     'types' => [array_keys($collection)],
@@ -124,7 +123,7 @@ class Favorite extends CommonDBTM
                 ]
             ];
             if (self::canCreate()) {
-                $favorites_menu['favorites']['links']['add'] = self::getFormURL(false);
+                $favorites_menu[PLUGIN_FAVORITES]['links']['add'] = self::getFormURL(false);
             }
 
             $content = [];
@@ -134,18 +133,34 @@ class Favorite extends CommonDBTM
                 }
             } else {
                 $content['default'] = [
-                    'title' => __('Default', 'favorites'),
+                    'title' => __('Default', PLUGIN_FAVORITES),
                     'icon' => self::getIcon(),
                     'page' => self::getSearchURL(false),
                     'default' => self::getSearchURL(''),
                 ];
             }
 
-            $favorites_menu['favorites']['content'] = $content;
+            $favorites_menu[PLUGIN_FAVORITES]['content'] = $content;
 
+            // return favorites menu always in first
             $menus = $favorites_menu + $menus;
         }
-        // return favorites menu always in first
+
+        \Safe\file_put_contents('C:\Users\tbrouard\Sources\repositories\glpi-test\plugins\favorites\menu.json',json_encode($menus));
+
         return $menus;
+    }
+
+    /**
+     * @return array
+     */
+    public static function getDropDown()
+    {
+        $list = [];
+
+        $menus = $_SESSION['glpimenu'];
+
+
+        return $list;
     }
 }

@@ -43,39 +43,32 @@ function plugin_favorites_install(): bool
 
     $migration = new Migration(PLUGIN_FAVORITES_VERSION);
 
-    Config::setConfigurationValues('plugin:favorites', ['version' => PLUGIN_FAVORITES_VERSION]);
+    Config::setConfigurationValues(PLUGIN_FAVORITES_CONFIG, ['version' => PLUGIN_FAVORITES_VERSION]);
 
-    // Adds the right(s) to all pre-existing profiles with no access by default
-//    ProfileRight::addProfileRights([Favorite::$rightname]);
+    Plugin::registerClass(Profile::class, ['addtabon' => Profile::class]);
 
-    // Grants full access to profiles that can update the Config (super-admins)
-//    $migration->addRight(Favorite::$rightname, ALLSTANDARDRIGHT, [Config::$rightname => UPDATE]);
-
-    $default_charset   = DBConnection::getDefaultCharset();
+    $default_charset = DBConnection::getDefaultCharset();
     $default_collation = DBConnection::getDefaultCollation();
-    $default_key_sign  = DBConnection::getDefaultPrimaryKeySignOption();
+    $default_key_sign = DBConnection::getDefaultPrimaryKeySignOption();
 
     $favorite_table = Favorite::getTable();
 
     if (!$DB->tableExists($favorite_table)) {
-        $DB->doQuery("
-         CREATE TABLE IF NOT EXISTS `$favorite_table` (
-         `id`      INT $default_key_sign NOT NULL AUTO_INCREMENT,
+        $DB->doQuery("CREATE TABLE IF NOT EXISTS `$favorite_table` (
+         `id` INT $default_key_sign NOT NULL AUTO_INCREMENT,
          `user_id` INT $default_key_sign NOT NULL,
-         `order`   SMALLINT     NOT NULL DEFAULT '0',
-         `type`    VARCHAR(32)  NOT NULL,
+         `order` SMALLINT NOT NULL DEFAULT '0',
+         `type` VARCHAR(32) NOT NULL,
          PRIMARY KEY (`id`), 
          KEY `user_id` (`user_id`)
-         ) ENGINE=InnoDB DEFAULT CHARSET=$default_charset COLLATE=$default_collation ROW_FORMAT=DYNAMIC;
-      ");
+         ) ENGINE=InnoDB DEFAULT CHARSET=$default_charset COLLATE=$default_collation ROW_FORMAT=DYNAMIC;");
+        // insert example
         $DB->doQuery("INSERT INTO `$favorite_table` (`user_id`, `order`, `type`) 
         VALUES 
         ({$_SESSION['glpiID']}, 1, 'Computer'),
         ({$_SESSION['glpiID']}, 2, 'User'),
         ({$_SESSION['glpiID']}, 3, 'Ticket');");
     }
-    // $classes = ['PluginFavoriteFavorit' => Favorite::class];
-
     //execute the whole migration
     $migration->executeMigration();
 
@@ -94,11 +87,12 @@ function plugin_favorites_uninstall(): bool
     global $DB;
 
     $config = new Config();
-    $my_config = array_keys(Config::getConfigurationValues('plugin:favorites'));
-    $config->deleteConfigurationValues('plugin:favorites', $my_config);
+    $my_config = array_keys(Config::getConfigurationValues(PLUGIN_FAVORITES_CONFIG));
+    $config->deleteConfigurationValues(PLUGIN_FAVORITES_CONFIG, $my_config);
 
-    ProfileRight::deleteProfileRights([Favorite::$rightname]);
-    Profile::removeRightsFromSession();
+    foreach (Profile::getAllRights() as $right) {
+        ProfileRight::deleteProfileRights([$right['field']]);
+    }
 
     $favorite_table = Favorite::getTable();
     $DB->doQuery("DROP TABLE IF EXISTS `$favorite_table`;");

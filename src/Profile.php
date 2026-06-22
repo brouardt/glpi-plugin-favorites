@@ -1,33 +1,5 @@
 <?php
 
-/*
- * @version $Id$
- -------------------------------------------------------------------------
- addressing plugin for GLPI
- Copyright (C) 2009-2022 by the addressing Development Team.
-
- https://github.com/pluginsGLPI/addressing
- -------------------------------------------------------------------------
-
- LICENSE
-
- This file is part of addressing.
-
- addressing is free software; you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation; either version 2 of the License, or
- (at your option) any later version.
-
- addressing is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- GNU General Public License for more details.
-
- You should have received a copy of the GNU General Public License
- along with addressing. If not, see <http://www.gnu.org/licenses/>.
- --------------------------------------------------------------------------
- */
-
 namespace GlpiPlugin\Favorites;
 
 use CommonGLPI;
@@ -36,31 +8,30 @@ use Glpi\Application\View\TemplateRenderer;
 use ProfileRight;
 use Session;
 
-if (!defined('GLPI_ROOT')) {
-    die("Sorry. You can't access directly to this file");
-}
-
-/**
- * Class Profile
- */
 class Profile extends \Profile
 {
     public static $rightname = 'profile';
 
-    public static function getIcon()
-    {
-        return Favorite::getIcon();
-    }
-
+    /**
+     * @param CommonGLPI $item
+     * @param int $withtemplate
+     *
+     * @return string
+     */
     public function getTabNameForItem(CommonGLPI $item, $withtemplate = 0)
     {
         if ($item->getType() == 'Profile') {
-            if ($item->getField('interface') == 'central') {
-                return self::createTabEntry(_n('Favorite', 'Favorites', 2, 'favorites'));
-            }
-            return '';
+            return self::createTabEntry(__('Favorite', PLUGIN_FAVORITES));
         }
         return '';
+    }
+
+    /**
+     * @return string
+     */
+    public static function getIcon()
+    {
+        return Favorite::getIcon();
     }
 
     /**
@@ -82,7 +53,7 @@ class Profile extends \Profile
         $rights = self::getAllRights();
 
         $twig = TemplateRenderer::getInstance();
-        $twig->display('@favorite/profile.html.twig', [
+        $twig->display('@favorites/profile.html.twig', [
             'id' => $item->getID(),
             'profile' => $profile,
             'title' => self::getTypeName(Session::getPluralNumber()),
@@ -92,21 +63,71 @@ class Profile extends \Profile
         return true;
     }
 
+    /**
+     * @return array[]
+     */
+    static function getAllRights()
+    {
+        return [
+            [
+                'itemtype' => Favorite::class,
+                'label' => Favorite::getTypeName(),
+                'field' => Favorite::$rightname,
+                'rights' => \Profile::getRightsFor(Favorite::class)
+            ]
+        ];
+    }
 
     /**
-     * @param $profile
-     **/
-    public static function addDefaultProfileInfos($profiles_id, $rights)
+     * @param $profiles_id
+     * @return void
+     */
+    static function showForProfile($profiles_id = 0)
+    {
+        $profile = new Profile();
+        $profile->getFromDB($profiles_id);
+
+        TemplateRenderer::getInstance()->display('@favorites/profile.html.twig', [
+            'can_edit' => self::canUpdate(),
+            'profile' => $profile,
+            'rights' => self::getAllRights()
+        ]);
+    }
+
+    /**
+     * @param $profile_id
+     */
+    public static function createFirstAccess($profile_id)
+    {
+        self::addDefaultProfileInfos(
+            $profile_id,
+            [Favorite::$rightname => ALLSTANDARDRIGHT],
+            true
+        );
+    }
+
+    /**
+     * @param $profiles_id
+     * @param $rights
+     * @return void
+     */
+    public static function addDefaultProfileInfos($profiles_id, $rights, $drop_existing = false)
     {
         $profileRight = new ProfileRight();
 
         $dbu = new DbUtils();
         foreach ($rights as $right => $value) {
+            if ($dbu->countElementsInTable(
+                    'glpi_profilerights',
+                    ['profiles_id' => $profiles_id, 'name' => $right]
+                ) && $drop_existing) {
+                $profileRight->deleteByCriteria(['profiles_id' => $profiles_id, 'name' => $right]);
+            }
             if (!$dbu->countElementsInTable(
                 'glpi_profilerights',
                 [
-                    "profiles_id" => $profiles_id,
-                    "name" => $right
+                    'profiles_id' => $profiles_id,
+                    'name' => $right
                 ]
             )) {
                 $myright['profiles_id'] = $profiles_id;
@@ -121,31 +142,28 @@ class Profile extends \Profile
     }
 
     /**
-     * @param $ID  integer
-     */
-    public static function createFirstAccess($profiles_id)
-    {
-        self::addDefaultProfileInfos(
-            $profiles_id,
-            [
-                'favorite' => ALLSTANDARDRIGHT
-            ]
-        );
-    }
-
-
-    /**
      * Initialize profiles
      */
     public static function initProfile()
     {
         global $DB;
+        $profile = new self();
+        $dbu = new DbUtils();
+        //Add new rights in glpi_profilerights table
+        foreach ($profile->getAllRights() as $data) {
+            if ($dbu->countElementsInTable(
+                    'glpi_profilerights',
+                    ['name' => $data['field']]
+                ) == 0) {
+                ProfileRight::addProfileRights([$data['field']]);
+            }
+        }
 
         $it = $DB->request([
             'FROM' => 'glpi_profilerights',
             'WHERE' => [
                 'profiles_id' => $_SESSION['glpiactiveprofile']['id'],
-                'name' => ['LIKE', '%favorite%'],
+                'name' => ['LIKE', '%' . Favorite::$rightname . '%'],
             ],
         ]);
         foreach ($it as $prof) {
@@ -155,26 +173,15 @@ class Profile extends \Profile
         }
     }
 
+    /**
+     * @return void
+     */
     public static function removeRightsFromSession()
     {
         foreach (self::getAllRights() as $right) {
-            if (isset($_SESSION['glpiactiveprofile'][$right['favorite']])) {
-                unset($_SESSION['glpiactiveprofile'][$right['favorite']]);
+            if (isset($_SESSION['glpiactiveprofile'][$right['field']])) {
+                unset($_SESSION['glpiactiveprofile'][$right['field']]);
             }
         }
-    }
-
-    public static function getAllRights()
-    {
-        $rights = [
-            [
-                'itemtype' => Favorite::class,
-                'label' => __('Favorites', 'favorites'),
-                'field' => Favorite::$rightname,
-                'rights' => \Profile::getRightsFor(Favorite::class)
-            ]
-        ];
-
-        return $rights;
     }
 }
