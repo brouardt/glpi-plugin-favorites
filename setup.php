@@ -33,8 +33,6 @@ use GlpiPlugin\Favorites\Favorite;
 use GlpiPlugin\Favorites\Profile;
 use GlpiPlugin\Favorites\Config;
 
-//global $CFG_GLPI;
-
 define('PLUGIN_FAVORITES', 'favorites');
 define('PLUGIN_FAVORITES_CONFIG', 'plugin:favorites');
 define('PLUGIN_FAVORITES_RIGHTS', 'plugin_favorites');
@@ -42,15 +40,8 @@ define('PLUGIN_FAVORITES_VERSION', '1.0.0');
 define('PLUGIN_FAVORITES_MIN_GLPI_VERSION', '11.0.0');
 define('PLUGIN_FAVORITES_MAX_GLPI_VERSION', '11.0.99');
 
-/*if (!defined("PLUGIN_FAVORITES_DIR")) {
-    define("PLUGIN_FAVORITES_DIR", Plugin::getPhpDir(PLUGIN_FAVORITES));
-    $root = $CFG_GLPI['root_doc'] . '/plugins/favorites';
-    define("PLUGIN_FAVORITES_WEBDIR", $root);
-}*/
-
 /**
- * Init hooks of the plugin.
- * REQUIRED
+ * @return void
  */
 function plugin_init_favorites(): void
 {
@@ -78,22 +69,7 @@ function plugin_init_favorites(): void
 
 
 /**
- * Get the name and the version of the plugin
- * REQUIRED
- *
- * @return array{
- *      name: string,
- *      version: string,
- *      author: string,
- *      license: string,
- *      homepage: string,
- *      requirements: array{
- *          glpi: array{
- *              min: string,
- *              max: string,
- *          }
- *      }
- * }
+ * @return array
  */
 function plugin_version_favorites(): array
 {
@@ -113,8 +89,7 @@ function plugin_version_favorites(): array
 }
 
 /**
- * Check pre-requisites before install
- * OPTIONAL
+ * @return bool
  */
 function plugin_favorites_check_prerequisites(): bool
 {
@@ -122,10 +97,8 @@ function plugin_favorites_check_prerequisites(): bool
 }
 
 /**
- * Check configuration process
- * OPTIONAL
- *
- * @param bool $verbose Whether to display message on failure. Defaults to false.
+ * @param bool $verbose
+ * @return bool
  */
 function plugin_favorite_check_config(bool $verbose = false): bool
 {
