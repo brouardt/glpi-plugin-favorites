@@ -5,37 +5,35 @@
  * favorites plugin for GLPI
  * -------------------------------------------------------------------------
  *
- * MIT License
+ * GPLv3 License
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
+ * Copyright (C) 2026  Thierry Brouard
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * -------------------------------------------------------------------------
  * @copyright Copyright (C) 2026 by the favorites plugin team.
- * @license   MIT https://opensource.org/licenses/mit-license.php
- * @link      https://github.com/Sevengroup-IT/favorites
+ * @license   GPL-3.0 https://opensource.org/license/gpl-3.0
+ * @link      https://github.com/brouardt/glpi-plugin-favorite
  * -------------------------------------------------------------------------
  */
 
 use Glpi\Plugin\Hooks;
 use GlpiPlugin\Favorites\Favorite;
 use GlpiPlugin\Favorites\Profile;
+use GlpiPlugin\Favorites\Config;
 
-global $CFG_GLPI;
+//global $CFG_GLPI;
 
 define('PLUGIN_FAVORITES', 'favorites');
 define('PLUGIN_FAVORITES_CONFIG', 'plugin:favorites');
@@ -44,11 +42,11 @@ define('PLUGIN_FAVORITES_VERSION', '1.0.0');
 define('PLUGIN_FAVORITES_MIN_GLPI_VERSION', '11.0.0');
 define('PLUGIN_FAVORITES_MAX_GLPI_VERSION', '11.0.99');
 
-if (!defined("PLUGIN_FAVORITES_DIR")) {
+/*if (!defined("PLUGIN_FAVORITES_DIR")) {
     define("PLUGIN_FAVORITES_DIR", Plugin::getPhpDir(PLUGIN_FAVORITES));
     $root = $CFG_GLPI['root_doc'] . '/plugins/favorites';
     define("PLUGIN_FAVORITES_WEBDIR", $root);
-}
+}*/
 
 /**
  * Init hooks of the plugin.
@@ -59,7 +57,6 @@ function plugin_init_favorites(): void
     /** @var array<string, array<string, mixed>> $PLUGIN_HOOKS */
     global $PLUGIN_HOOKS;
 
-    //$PLUGIN_HOOKS[Hooks::CSRF_COMPLIANT][PLUGIN_FAVORITES]   = true;
     $PLUGIN_HOOKS[Hooks::ASSIGN_TO_TICKET][PLUGIN_FAVORITES] = false;
     $PLUGIN_HOOKS[Hooks::HELPDESK_MENU_ENTRY][PLUGIN_FAVORITES] = false;
     $PLUGIN_HOOKS[Hooks::CHANGE_PROFILE][PLUGIN_FAVORITES] = [Profile::class, 'initProfile'];
@@ -75,7 +72,7 @@ function plugin_init_favorites(): void
         }
 
         // Display a config entry
-//        $PLUGIN_HOOKS[Hooks::CONFIG_PAGE][PLUGIN_FAVORITES] = 'front/favorites.php';
+        $PLUGIN_HOOKS[Hooks::CONFIG_PAGE][PLUGIN_FAVORITES] = 'front/favorite.php';
     }
 }
 
@@ -101,10 +98,10 @@ function plugin_init_favorites(): void
 function plugin_version_favorites(): array
 {
     return [
-        'name' => _n('Favorite', 'Favorites', 2, PLUGIN_FAVORITES),
+        'name' => __s('Favorites', PLUGIN_FAVORITES),
         'version' => PLUGIN_FAVORITES_VERSION,
         'author' => 'Thierry Brouard',
-        'license' => 'GPLv2+',
+        'license' => 'GPLv3',
         'homepage' => 'https://github.com/brouardt/glpi-plugin-favorite',
         'requirements' => [
             'glpi' => [

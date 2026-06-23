@@ -32,7 +32,7 @@
         <lang>en_GB</lang>
         <lang>fr_FR</lang>
     </langs>
-    <license><![CDATA[GPL v2+]]></license>
+    <license><![CDATA[GPLv3]]></license>
     <tags>
         <en>
             <tag>favorites</tag>
