@@ -25,60 +25,56 @@
 # @link      https://github.com/brouardt/glpi-plugin-favorite
 # -------------------------------------------------------------------------
 #}
-{#
-# -------------------------------------------------------------------------
-# Addressing plugin for GLPI
-# -------------------------------------------------------------------------
-#
-# LICENSE
-#
-# This file is part of Addressing.
-#
-# Addressing is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
-#
-# Addressing is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with Addressing. If not, see <http://www.gnu.org/licenses/>.
-# -------------------------------------------------------------------------
-# @copyright Copyright (C) 2026-2026 by Addressing plugin team.
-# @license   GPLv2 https://www.gnu.org/licenses/gpl-2.0.html
-# @link      https://github.com/InfotelGLPI/Addressing
-# -------------------------------------------------------------------------
-#}
 
-<div class="card">
-    <div class="card-body">
-        <form name='form' action='{{ action }}' method='post'>
-            <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}">
-            <input type="hidden" name="id" value="{{ id }}">
+{% import 'components/form/fields_macros.html.twig' as fields %}
+{% set id = item.fields['id'] ?? -1 %}
 
-            <div class="hr-text">
-                <i class="fa-2x ti ti-list"></i>
-                <span>{{ __('Favorites', 'favorites') }}</span>
-            </div>
+<div class="asset">
 
-            <div class="row">
-                {% for type in types %}
-                    <div>{{ type }}</div>
-                {% endfor %}
-            </div>
+    {% if canedit %}
+    <form name="favorite_form" method="post" action="{{ action }}" enctype="multipart/form-data" data-submit-once>
+        {% endif %}
 
-            <div class="hr mt-3 mb-3"></div>
-            <div class="hstack gap-1">
-                <div class="pe-5 ms-auto">
-                    <button class="btn btn-primary" type="submit" name="update" value="1">
-                        <i class="ti ti-device-floppy"></i>
-                        <span>{{ _x('button', 'Save') }}</span>
-                    </button>
+        <div id="mainformtable">
+
+            <div class="card-body d-flex flex-wrap">
+                <div class="col-12 col-xxl-12 flex-column">
+                    <div class="d-flex flex-row flex-wrap flex-xl-nowrap">
+                        <div class="row flex-row align-items-start flex-grow-1">
+                            <div class="row flex-row">
+                                <input type="hidden" name="id" value={{ item.fields['id'] }} />
+
+                                {{ fields.dropdownField(
+                                    'favorites',
+                                    'id',
+                                    [],
+                                    __('Favorites'),
+                                    {
+                                        'multiple': 'multiple',
+                                        'used': [item.fields['id']],
+                                        'value': types
+                                    }
+                                ) }}
+
+                                {{ fields.nullField }}
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </form>
-    </div>
+
+            {% if canedit %}
+            <div class="card-body mx-n2 mb-4 border-top d-flex flex-row-reverse align-items-start flex-wrap">
+                <button class="btn btn-primary me-2" type="submit" name="update" value="1">
+                    <i class="ti ti-device-floppy"></i>
+                    <span>{{ _x('button', 'Save') }}</span>
+                </button>
+            </div>
+
+            <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}" />
+        </div>
+    </form>
+    {% endif %}
 </div>
+

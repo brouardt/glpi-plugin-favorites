@@ -76,96 +76,33 @@ class Favorite extends CommonDBTM
     public static function redefineMenus($menus)
     {
         if (self::canView()) {
-            $collection = Preference::getFavoritesTypes();
+            $types = Preference::getFavoritesTypes();
 
             $favorites_menu = [PLUGIN_FAVORITES =>
                 [
                     'title' => self::getMenuName(),
-                    'types' => array_keys($collection),
-                    'links' => [
-                        'search' => '',
-                        'lists' => ''
-                    ],
+                    'types' => $types,
                     'icon' => self::getIcon(),
                     'content' => [],
-                    'page' => null,
-                    'default' => null
+                    'display' => true
                 ]
             ];
-            if (self::canCreate()) {
-                $favorites_menu[PLUGIN_FAVORITES]['links']['add'] = self::getFormURL(false);
-            }
 
-            $content = [];
-            if (!empty($collection)) {
-                foreach ($collection as $key => $val) {
-                    $content[strtolower($key)] = $val;
+            if (!empty($types)) {
+                foreach ($types as $item) {
+                    $data = $item::getMenuContent();
+                    if (isset($data['is_multi_entries']) && $data['is_multi_entries']) {
+                        $favorites_menu[PLUGIN_FAVORITES]['content'] += $data;
+                    } else {
+                        $favorites_menu[PLUGIN_FAVORITES]['content'][strtolower($item)] = $data;
+                    }
                 }
             }
-
-            $favorites_menu[PLUGIN_FAVORITES]['content'] = $content;
 
             // return favorites menu always in first
             $menus = $favorites_menu + $menus;
         }
 
         return $menus;
-    }
-
-    /**
-     * @return array
-     */
-    public function getDropDown()
-    {
-        $list = [];
-
-        $menus = $_SESSION['glpimenu'];
-
-
-        return $list;
-    }
-
-    /**
-     * @param $ID
-     * @param array $options
-     * @return void
-     */
-    public function showForm($ID, array $options = [])
-    {
-        $this->getFromDB($ID);
-
-        echo "<div class='center'>";
-        echo "<form name='form' method='post' action='" . $this->getFormURL() . "'>";
-
-        echo Html::hidden('id', ['value' => 1]);
-
-        echo "<table class='tab_cadre_fixe'>";
-
-        echo "</table>";
-        Html::closeForm();
-        echo "</div>";
-    }
-
-    /**
-     * @return array
-     */
-    function rawSearchOptions()
-    {
-        $tab = [];
-
-        $tab[] = [
-            'id' => 'common',
-            'name' => self::getTypeName(2)
-        ];
-
-        $tab[] = [
-            'id' => '1',
-            'table' => $this->getTable(),
-            'field' => 'type',
-            'name' => __('type'),
-            'datatype' => 'dropdown'
-        ];
-
-        return $tab;
     }
 }

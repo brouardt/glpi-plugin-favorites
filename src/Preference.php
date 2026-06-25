@@ -33,7 +33,7 @@ namespace GlpiPlugin\Favorites;
 use CommonDBTM;
 use CommonGLPI;
 use Glpi\Application\View\TemplateRenderer;
-use Symfony\Bundle\FrameworkBundle\Command\ConfigDumpReferenceCommand;
+use Session;
 use Toolbox;
 
 
@@ -59,14 +59,19 @@ class Preference extends CommonDBTM
     public static function showPreferences()
     {
         $preference = new Preference();
-        $preference->getFromDB($_SESSION['glpiID']);
+        $preference->getFromDB(Session::getLoginUserID());
+
+        $can_edit = ($preference->getField('users_id') == Session::getLoginUserID());
+        if (!$can_edit) {
+            return false;
+        }
 
         $twig = TemplateRenderer::getInstance();
         $twig->display('@favorites/preference.html.twig', [
-            'form_id' => 'plugin_favorite_user',
             'action' => Toolbox::getItemTypeFormURL(self::class),
-            'id'=> $preference->getField('id'),
-            'types' => json_decode($preference->getField('types'))
+            'item' => $preference,
+            'types' => json_decode($preference->getField('types')),
+            'canedit' => $can_edit
         ]);
     }
 
@@ -105,21 +110,28 @@ class Preference extends CommonDBTM
     public static function getFavoritesTypes()
     {
         $preference = new Preference();
-        $preference->getFromDB($_SESSION['glpiID']);
+        $preference->getFromDB(Session::getLoginUserID());
 
         $types = $preference->getField('types');
 
         $list = [];
         if ($types) {
-            $array = json_decode($types);
-            foreach ($array as $item) {
-                if (method_exists($item, 'getMenuContent')) {
-                    $list[$item] = $item::getMenuContent();
-                }
-            }
+            $list = json_decode($types);
         }
 
         return $list;
     }
 
+    /**
+     * @return array
+     */
+    public function dropdownFields()
+    {
+        $list = [];
+
+        $menus = $_SESSION['glpimenu'];
+
+
+        return $list;
+    }
 }
