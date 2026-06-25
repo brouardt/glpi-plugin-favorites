@@ -89,12 +89,12 @@ class Favorite extends CommonDBTM
             ];
 
             if (!empty($types)) {
-                foreach ($types as $item) {
-                    $data = $item::getMenuContent();
+                foreach ($types as $type) {
+                    $data = $type::getMenuContent();
                     if (isset($data['is_multi_entries']) && $data['is_multi_entries']) {
                         $favorites_menu[PLUGIN_FAVORITES]['content'] += $data;
                     } else {
-                        $favorites_menu[PLUGIN_FAVORITES]['content'][strtolower($item)] = $data;
+                        $favorites_menu[PLUGIN_FAVORITES]['content'][strtolower($type)] = $data;
                     }
                 }
             }
