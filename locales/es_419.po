@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Favorite 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-17 13:06+0200\n"
-"PO-Revision-Date: 2026-06-26 15:14+0200\n"
+"PO-Revision-Date: 2026-06-26 18:18+0200\n"
 "Last-Translator: Thierry Brouard <thierry.brouard@free.fr>\n"
 "Language-Team: informatique@sevengroup.fr\n"
 "Language: es_419\n"
@@ -20,26 +20,34 @@ msgstr ""
 "X-Generator: Poedit 3.9\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
+#, fuzzy
 msgid "Favorites Plugin"
 msgstr "Favorites Plugin"
 
+#, fuzzy
 msgid "Favorite"
 msgstr "Favorite"
 
+#, fuzzy
 msgid "Favorites"
 msgstr "Favorites"
 
+#, fuzzy
 msgid "Installed / not configured"
 msgstr "Installed / not configured"
 
+#, fuzzy
 msgid "List"
 msgstr "List"
 
+#, fuzzy
 msgid "No results found"
 msgstr "No results found"
 
+#, fuzzy
 msgid "Default"
 msgstr "Default"
 
+#, fuzzy
 msgid "Displayed menus"
 msgstr "Displayed menus"

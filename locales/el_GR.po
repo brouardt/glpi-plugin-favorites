@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Favorite 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-17 13:06+0200\n"
-"PO-Revision-Date: 2026-06-26 15:14+0200\n"
+"PO-Revision-Date: 2026-06-26 18:35+0200\n"
 "Last-Translator: Thierry Brouard <thierry.brouard@free.fr>\n"
 "Language-Team: informatique@sevengroup.fr\n"
 "Language: el_GR\n"
@@ -21,25 +21,25 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid "Favorites Plugin"
-msgstr "Favorites Plugin"
+msgstr "Πρόσθετο Αγαπημένων"
 
 msgid "Favorite"
-msgstr "Favorite"
+msgstr "Αγαπημένα"
 
 msgid "Favorites"
-msgstr "Favorites"
+msgstr "Αγαπημένα"
 
 msgid "Installed / not configured"
-msgstr "Installed / not configured"
+msgstr "Εγκατεστημένα / μη ρυθμισμένα"
 
 msgid "List"
-msgstr "List"
+msgstr "Λίστα"
 
 msgid "No results found"
-msgstr "No results found"
+msgstr "Δεν βρέθηκαν αποτελέσματα"
 
 msgid "Default"
-msgstr "Default"
+msgstr "Προεπιλογή"
 
 msgid "Displayed menus"
-msgstr "Displayed menus"
+msgstr "Εμφανιζόμενα μενού"
