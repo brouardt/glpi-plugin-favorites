@@ -21,25 +21,25 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid "Favorites Plugin"
-msgstr "Favorites Plugin"
+msgstr "즐겨찾기 플러그인"
 
 msgid "Favorite"
-msgstr "Favorite"
+msgstr "즐겨찾기"
 
 msgid "Favorites"
-msgstr "Favorites"
+msgstr "즐겨찾기"
 
 msgid "Installed / not configured"
-msgstr "Installed / not configured"
+msgstr "설치됨 / 설정되지 않음"
 
 msgid "List"
-msgstr "List"
+msgstr "목록"
 
 msgid "No results found"
-msgstr "No results found"
+msgstr "결과를 찾을 수 없습니다"
 
 msgid "Default"
-msgstr "Default"
+msgstr "기본값"
 
 msgid "Displayed menus"
-msgstr "Displayed menus"
+msgstr "표시된 메뉴"

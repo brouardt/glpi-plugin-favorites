@@ -30,16 +30,16 @@ msgid "Favorites"
 msgstr "Favorites"
 
 msgid "Installed / not configured"
-msgstr "Installed / not configured"
+msgstr "បានដំឡើង / មិនបានកំណត់រចនាសម្ព័ន្ធ"
 
 msgid "List"
-msgstr "List"
+msgstr "បញ្ជី"
 
 msgid "No results found"
-msgstr "No results found"
+msgstr "រកមិនឃើញលទ្ធផលទេ"
 
 msgid "Default"
-msgstr "Default"
+msgstr "លំនាំដើម"
 
 msgid "Displayed menus"
-msgstr "Displayed menus"
+msgstr "ម៉ឺនុយដែលបានបង្ហាញ"

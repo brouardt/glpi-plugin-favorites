@@ -21,25 +21,25 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid "Favorites Plugin"
-msgstr "Favorites Plugin"
+msgstr "Plugin Mục yêu thích"
 
 msgid "Favorite"
-msgstr "Favorite"
+msgstr "Mục yêu thích"
 
 msgid "Favorites"
-msgstr "Favorites"
+msgstr "Các mục yêu thích"
 
 msgid "Installed / not configured"
-msgstr "Installed / not configured"
+msgstr "Đã cài đặt / chưa cấu hình"
 
 msgid "List"
-msgstr "List"
+msgstr "Danh sách"
 
 msgid "No results found"
-msgstr "No results found"
+msgstr "Không tìm thấy kết quả nào"
 
 msgid "Default"
-msgstr "Default"
+msgstr "Mặc định"
 
 msgid "Displayed menus"
-msgstr "Displayed menus"
+msgstr "Các menu được hiển thị"

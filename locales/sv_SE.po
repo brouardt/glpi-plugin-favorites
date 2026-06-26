@@ -21,25 +21,25 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid "Favorites Plugin"
-msgstr "Favorites Plugin"
+msgstr "Favoriter-plugin"
 
 msgid "Favorite"
-msgstr "Favorite"
+msgstr "Favoriter"
 
 msgid "Favorites"
-msgstr "Favorites"
+msgstr "Favoriter"
 
 msgid "Installed / not configured"
-msgstr "Installed / not configured"
+msgstr "Installerad / inte konfigurerad"
 
 msgid "List"
-msgstr "List"
+msgstr "Lista"
 
 msgid "No results found"
-msgstr "No results found"
+msgstr "Inga resultat hittades"
 
 msgid "Default"
-msgstr "Default"
+msgstr "Standard"
 
 msgid "Displayed menus"
-msgstr "Displayed menus"
+msgstr "Visade menyer"

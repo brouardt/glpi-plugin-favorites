@@ -21,25 +21,25 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid "Favorites Plugin"
-msgstr "Favorites Plugin"
+msgstr "お気に入りプラグイン"
 
 msgid "Favorite"
-msgstr "Favorite"
+msgstr "お気に入り"
 
 msgid "Favorites"
-msgstr "Favorites"
+msgstr "お気に入り"
 
 msgid "Installed / not configured"
-msgstr "Installed / not configured"
+msgstr "インストール済み / 未設定"
 
 msgid "List"
-msgstr "List"
+msgstr "リスト"
 
 msgid "No results found"
-msgstr "No results found"
+msgstr "結果が見つかりませんでした"
 
 msgid "Default"
-msgstr "Default"
+msgstr "デフォルト"
 
 msgid "Displayed menus"
-msgstr "Displayed menus"
+msgstr "表示メニュー"

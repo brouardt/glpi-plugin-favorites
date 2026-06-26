@@ -21,25 +21,25 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid "Favorites Plugin"
-msgstr "Favorites Plugin"
+msgstr "Lemmikute plugin"
 
 msgid "Favorite"
-msgstr "Favorite"
+msgstr "Lemmik"
 
 msgid "Favorites"
-msgstr "Favorites"
+msgstr "Lemmikud"
 
 msgid "Installed / not configured"
-msgstr "Installed / not configured"
+msgstr "Installitud / pole konfigureeritud"
 
 msgid "List"
-msgstr "List"
+msgstr "Loend"
 
 msgid "No results found"
-msgstr "No results found"
+msgstr "Tulemusi ei leitud"
 
 msgid "Default"
-msgstr "Default"
+msgstr "Vaikimisi"
 
 msgid "Displayed menus"
-msgstr "Displayed menus"
+msgstr "Kuvatud menüüd"

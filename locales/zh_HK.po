@@ -21,25 +21,25 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid "Favorites Plugin"
-msgstr "Favorites Plugin"
+msgstr "收藏夹插件"
 
 msgid "Favorite"
-msgstr "Favorite"
+msgstr "收藏"
 
 msgid "Favorites"
-msgstr "Favorites"
+msgstr "收藏夹"
 
 msgid "Installed / not configured"
-msgstr "Installed / not configured"
+msgstr "已安装 / 未配置"
 
 msgid "List"
-msgstr "List"
+msgstr "列表"
 
 msgid "No results found"
-msgstr "No results found"
+msgstr "未找到结果"
 
 msgid "Default"
-msgstr "Default"
+msgstr "默认"
 
 msgid "Displayed menus"
-msgstr "Displayed menus"
+msgstr "显示的菜单"
