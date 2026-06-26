@@ -55,9 +55,6 @@ function plugin_favorites_install(): bool
          PRIMARY KEY (`favorite_id`), 
          UNIQUE KEY `users_id` (`users_id`)
          ) ENGINE=InnoDB DEFAULT CHARSET=$default_charset COLLATE=$default_collation ROW_FORMAT=DYNAMIC;");
-        // insert example
-        $DB->doQuery("INSERT INTO `$preference_table` (`users_id`, `types`) 
-        VALUES ({$_SESSION['glpiID']}, '" . json_encode(['Computer', 'User', 'Ticket']) . "');");
     }
     //execute the whole migration
     $migration->executeMigration();
