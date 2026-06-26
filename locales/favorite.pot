@@ -39,3 +39,6 @@ msgstr ""
 
 msgid "Default"
 msgstr ""
+
+msgid "Displayed menus"
+msgstr ""

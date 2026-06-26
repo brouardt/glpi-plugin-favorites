@@ -7,13 +7,13 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Favorite 1.0.0\n"
+"Project-Id-Version: Favorites 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-17 13:06+0200\n"
-"PO-Revision-Date: 2026-06-26 15:13+0200\n"
+"PO-Revision-Date: 2026-06-26 15:44+0200\n"
 "Last-Translator: Thierry Brouard <thierry.brouard@free.fr>\n"
 "Language-Team: informatique@sevengroup.fr\n"
-"Language: fr_FR\n"
+"Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,25 +21,25 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid "Favorites Plugin"
-msgstr "Greffon favoris"
+msgstr ""
 
 msgid "Favorite"
-msgstr "Favori"
+msgstr ""
 
 msgid "Favorites"
-msgstr "Favoris"
+msgstr ""
 
 msgid "Installed / not configured"
-msgstr "Installé / non configuré"
+msgstr ""
 
 msgid "List"
-msgstr "Liste"
+msgstr ""
 
 msgid "No results found"
-msgstr "Aucune données"
+msgstr ""
 
 msgid "Default"
-msgstr "Défaut"
+msgstr ""
 
 msgid "Displayed menus"
-msgstr "Menus affichés"
+msgstr ""
