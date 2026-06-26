@@ -32,7 +32,8 @@
 <div class="asset">
 
     {% if canedit %}
-    <form name="favorite_form" method="post" action="{{ action }}" enctype="multipart/form-data" data-submit-once>
+    <form name="favorite_form" method="post" action="{{ item.getFormURL() }}" enctype="multipart/form-data"
+          data-submit-once>
         {% endif %}
 
         <div id="mainformtable">
@@ -42,17 +43,16 @@
                     <div class="d-flex flex-row flex-wrap flex-xl-nowrap">
                         <div class="row flex-row align-items-start flex-grow-1">
                             <div class="row flex-row">
-                                <input type="hidden" name="id" value={{ item.fields['id'] }} />
+                                <input type="hidden" name="id" value={{ item.fields['id'] }}/>
 
-                                {{ fields.dropdownField(
-                                    'favorites',
-                                    'id',
-                                    [],
-                                    __('Favorites'),
+                                {{ fields.dropdownArrayField(
+                                    'types',
+                                    '',
+                                    menus,
+                                    __('Favorites', 'favorites'),
                                     {
-                                        'multiple': 'multiple',
-                                        'used': [item.fields['id']],
-                                        'value': types
+                                        values: types,
+                                        multiple: 1
                                     }
                                 ) }}
 
@@ -72,7 +72,7 @@
                 </button>
             </div>
 
-            <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}" />
+            <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}"/>
         </div>
     </form>
     {% endif %}
