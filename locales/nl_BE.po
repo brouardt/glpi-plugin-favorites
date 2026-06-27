@@ -22,32 +22,32 @@ msgstr ""
 
 #, fuzzy
 msgid "Favorites Plugin"
-msgstr "Favorites Plugin"
+msgstr "Favorieten-plug-in"
 
 #, fuzzy
 msgid "Favorite"
-msgstr "Favorite"
+msgstr "Favoriet"
 
 #, fuzzy
 msgid "Favorites"
-msgstr "Favorites"
+msgstr "Favorieten"
 
 #, fuzzy
 msgid "Installed / not configured"
-msgstr "Installed / not configured"
+msgstr "Geïnstalleerd / niet geconfigureerd"
 
 #, fuzzy
 msgid "List"
-msgstr "List"
+msgstr "Lijst"
 
 #, fuzzy
 msgid "No results found"
-msgstr "No results found"
+msgstr "Geen resultaten gevonden"
 
 #, fuzzy
 msgid "Default"
-msgstr "Default"
+msgstr "Standaard"
 
 #, fuzzy
 msgid "Displayed menus"
-msgstr "Displayed menus"
+msgstr "Weergegeven menu's"
