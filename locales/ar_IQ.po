@@ -21,25 +21,25 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid "Favorites Plugin"
-msgstr "Плъгин за любими"
+msgstr "إضافة المفضلة"
 
 msgid "Favorite"
-msgstr "Любим"
+msgstr "مفضلة"
 
 msgid "Favorites"
-msgstr "Любимите"
+msgstr "المفضلة"
 
 msgid "Installed / not configured"
-msgstr "Инсталиран / не е конфигуриран"
+msgstr "مثبّتة / غير مُعدّة"
 
 msgid "List"
-msgstr "Списък"
+msgstr "قائمة"
 
 msgid "No results found"
-msgstr "Няма намерени резултати"
+msgstr "لم يتم العثور على نتائج"
 
 msgid "Default"
-msgstr "По подразбиране"
+msgstr "افتراضي"
 
 msgid "Displayed menus"
-msgstr "Показвани менюта"
+msgstr "القوائم المعروضة"
