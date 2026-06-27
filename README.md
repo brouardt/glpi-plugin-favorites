@@ -5,7 +5,7 @@
 ### Français
 
 Ce plugin vous permet de gérer les favoris des menus les plus utilisés. Très utile pour les administrateurs qui voient tous les menus.
-* Une vue de configuration vous permettra de selectionner les raccourcis qui vous interesserons.
+* Chaque utilisateur pourra depuis ses préférences, dans l'onglet "favoris", choisir les menus les plus utilisés.
 
 #### Installation
 
@@ -14,12 +14,12 @@ Ce plugin vous permet de gérer les favoris des menus les plus utilisés. Très 
 2) Pour installer, vous pouvez télécharger le dernière version ``https://github.com/brouardt/glpi-plugin-favorites/releases`` directement depuis gitgub, extraire l'archive, renommer le dossier en "favorites" et le glisser dans le dossier plugin de votre GLPI
 
 #### Configuration
-Pour ajouter ou supprimer des menus en favoris il vous suffit de vous rendre dans vos préférences dans l'onglet Favoris et de sélectionner dans les menus à afficher ceux que vous préférez.
+Pour ajouter ou supprimer des menus en favoris, il vous suffit de vous rendre dans vos préférences dans l'onglet Favoris et de sélectionner dans les menus à afficher ceux que vous préférez.
 
 ### English
 
 This plugin lets you manage favorite for your most frequently used menus. Very useful for administrators who see all menus.
-* A configuration view allows you to select the shortcuts you want.
+* Users will be able to select their most frequently used menus from their preferences, under the "Favorites" tab.
 
 #### Install
 

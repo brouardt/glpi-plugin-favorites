@@ -7,11 +7,11 @@
 	<description>
 		<short>
 			<fr><![CDATA[Gestion de favoris. Ce plugin vous permet de gérer favoris des menus que vous utilisez le plus.]]></fr>
-			<en><![CDATA[favorites management. This plugin enables you to manage your favorites into your network and associate them with elements of the inventory.<br />A mailing system allow to verify already expired or soon expired favorites.]]></en>
+			<en><![CDATA[Favorites management. This plugin allows you to manage favorites for the menus you use most often.]]></en>
 		</short>
 		<long>
-			<fr><![CDATA[Ce plugin vous permet de gérer les favorites de votre réseau et de les associer à des éléments de l’inventaire.<br />Un système d'alertes mail permet de vérifier les favorites qui vont ou qui ont expirés.<br />- Utilisable depuis le helpdesk<br />- Peut être intégré au plugin environment.]]></fr>
-			<en><![CDATA[This plugin enables you to manage your favorites into your network and associate them with elements of the inventory.<br />A mailing system allow to verify already expired or soon expired favorites.<br />- Can be used with helpdesk<br />- Can be integrated into Environment plugin.]]></en>
+			<fr><![CDATA[Gestion de favoris. Ce plugin vous permet de gérer favoris des menus que vous utilisez le plus.]]></fr>
+			<en><![CDATA[Favorites management. This plugin allows you to manage favorites for the menus you use most often.]]></en>
 		</long>
 	</description>
 	<homepage>https://github.com/brouardt/glpi-plugin-favorites</homepage>
