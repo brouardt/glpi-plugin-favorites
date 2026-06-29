@@ -1,6 +1,6 @@
 <root>
-	<name>Favoris</name>
-	<key>favoris</key>
+	<name>Favorites</name>
+	<key>favorites</key>
 	<state>stable</state>
 	<logo>https://raw.githubusercontent.com/brouardt/glpi-plugin-favorites/main/logo.png</logo>
 	<description>
@@ -134,7 +134,7 @@
 		</pt>
 	</tags>
 	<screenshots>
-		<screenshot>https://raw.githubusercontent.com/brouardt/glpi-plugin-favorites/refs/heads/main/screenshots/menus.png</screenshot>
-		<screenshot>https://raw.githubusercontent.com/brouardt/glpi-plugin-favorites/refs/heads/main/screenshots/settings.png</screenshot>
+		<screenshot>https://raw.githubusercontent.com/brouardt/glpi-plugin-favorites/main/screenshots/menus.png</screenshot>
+		<screenshot>https://raw.githubusercontent.com/brouardt/glpi-plugin-favorites/main/screenshots/settings.png</screenshot>
 	</screenshots>
 </root>
