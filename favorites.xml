@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <root>
 	<name>Favorites</name>
 	<key>favorites</key>
@@ -6,8 +7,7 @@
 	<description>
 		<short>
 			<fr><![CDATA[Ce greffon vous permet de gérer vos menus favoris.]]></fr>
-			<en><![CDATA[This plugin allows you to manage your favorite menus.]]>
-			</en>
+			<en><![CDATA[This plugin allows you to manage your favorite menus.]]></en>
 		</short>
 		<long>
 			<fr><![CDATA[L'objectif de ce greffon est de fournir un menu administrable à volonté pour intégrer,
