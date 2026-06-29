@@ -1,6 +1,6 @@
 <root>
-	<name>Favoris</name>
-	<key>favoris</key>
+	<name>Favorites</name>
+	<key>favorites</key>
 	<state>stable</state>
 	<logo>https://raw.githubusercontent.com/brouardt/glpi-plugin-favorites/main/logo.png</logo>
 	<description>
@@ -33,6 +33,7 @@
 	<download>https://github.com/brouardt/glpi-plugin-favorites/releases</download>
 	<issues>https://github.com/brouardt/glpi-plugin-favorites/issues</issues>
 	<readme>https://github.com/brouardt/glpi-plugin-favorites/main/README.md</readme>
+	<changelog>https://github.com/brouardt/glpi-plugin-favorites/main/CHANGELOG.md</changelog>
 	<authors>
 		<author>Thierry Brouard</author>
 	</authors>
