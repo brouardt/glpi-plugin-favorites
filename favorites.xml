@@ -6,12 +6,42 @@
 	<logo>https://raw.githubusercontent.com/brouardt/glpi-plugin-favorites/main/logo.png</logo>
 	<description>
 		<short>
-			<fr><![CDATA[Gestion de favoris. Ce plugin vous permet de gérer favoris des menus que vous utilisez le plus.]]></fr>
-			<en><![CDATA[Favorites management. This plugin allows you to manage favorites for the menus you use most often.]]></en>
+			<fr>
+				Ce greffon vous permet de gérer vos menus favoris.
+			</fr>
+			<en>
+				This plugin allows you to manage your favorite menus.
+			</en>
 		</short>
 		<long>
-			<fr><![CDATA[Gestion de favoris. Ce plugin vous permet de gérer favoris des menus que vous utilisez le plus.]]></fr>
-			<en><![CDATA[Favorites management. This plugin allows you to manage favorites for the menus you use most often.]]></en>
+			<fr>
+				L'objectif de ce greffon est de fournir un menu administrable à volonté pour intégrer, en son sein,
+				uniquement les menus que vous utilisez le plus souvent. Pour gérer vos choix, il vous suffit de vous
+				rendre dans vos préférences et de cliquer sur l'onglet "favoris", puis de sélectionner dans le champ
+				"Menu affichés" la liste des éléments qui vous intéresse.
+			</fr>
+			<en>
+				The goal of this plugin is to provide a fully customizable menu where you can include only the menus
+				you use most frequently. To manage your choices, simply go to your preferences, click on the
+				"Favorites" tab, and then select the items you are interested in from the "Displayed menus" field.
+			</en>
+			<es>
+				El objetivo de este plugin es ofrecer un menú totalmente personalizable en el que puedas incluir
+				únicamente los menús que utilizas con mayor frecuencia. Para gestionar tus selecciones, simplemente
+				ve a tus preferencias, haz clic en la pestaña «Favoritos» y, a continuación, selecciona los elementos
+				que te interesen en el campo «Menús mostrados».
+			</es>
+			<de>
+				Ziel dieses Plugins ist es, ein vollständig anpassbares Menü bereitzustellen, in das Sie nur die am
+				häufigsten genutzten Menüs aufnehmen können. Um Ihre Auswahl zu verwalten, gehen Sie einfach zu den
+				Einstellungen, klicken Sie auf den Reiter „Favoriten“ und wählen Sie dann im Feld „Angezeigte Menüs“
+				die gewünschten Einträge aus.
+			</de>
+			<pt>
+				O objetivo deste plugin é fornecer um menu totalmente personalizável, onde pode incluir apenas os menus
+				que utiliza com mais frequência. Para gerir as suas escolhas, basta aceder às suas preferências, clicar
+				no separador "Favoritos" e selecionar os itens do seu interesse no campo "Menus apresentados".
+			</pt>
 		</long>
 	</description>
 	<homepage>https://github.com/brouardt/glpi-plugin-favorites</homepage>
@@ -95,16 +125,28 @@
 		<lang>zh_HK</lang>
 		<lang>zh_TW</lang>
 	</langs>
-	<license><![CDATA[GPLv3]]></license>
+	<license>GPLv3</license>
 	<tags>
+		<fr>
+			<tag>menu</tag>
+			<tag>favoris</tag>
+		</fr>
 		<en>
 			<tag>menu</tag>
 			<tag>favorites</tag>
 		</en>
-		<fr>
-			<tag>menu</a>
-			<tag>favoris</tag>
-		</fr>
+		<es>
+			<tag>menu</tag>
+			<tag>favoritos</tag>
+		</es>
+		<de>
+			<tag>menü</tag>
+			<tag>Favoriten</tag>
+		</de>
+		<pt>
+			<tag>menu</tag>
+			<tag>favoritos</tag>
+		</pt>
 	</tags>
 	<screenshots>
 		<screenshot>https://raw.githubusercontent.com/brouardt/glpi-plugin-favorites/refs/heads/main/screenshots/menus.png</screenshot>
