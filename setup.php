@@ -32,7 +32,6 @@ use Glpi\Plugin\Hooks;
 use GlpiPlugin\Favorites\Favorite;
 use GlpiPlugin\Favorites\Profile;
 use GlpiPlugin\Favorites\Preference;
-use Twig\TwigFilter;
 
 define('PLUGIN_FAVORITES', 'favorites');
 define('PLUGIN_FAVORITES_CONFIG', 'plugin:favorites');
