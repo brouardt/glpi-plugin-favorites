@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Favorite 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-17 13:06+0200\n"
-"PO-Revision-Date: 2026-06-26 18:26+0200\n"
+"PO-Revision-Date: 2026-06-30 09:51+0200\n"
 "Last-Translator: Thierry Brouard <thierry.brouard@free.fr>\n"
 "Language-Team: informatique@sevengroup.fr\n"
 "Language: km_KH\n"
@@ -20,17 +20,14 @@ msgstr ""
 "X-Generator: Poedit 3.9\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#, fuzzy
 msgid "Favorites Plugin"
-msgstr "Favorites Plugin"
+msgstr "កម្មវិធីជំនួយសំណព្វ"
 
-#, fuzzy
 msgid "Favorite"
-msgstr "Favorite"
+msgstr "សំណព្វចិត្ត"
 
-#, fuzzy
 msgid "Favorites"
-msgstr "Favorites"
+msgstr "ចំណូលចិត្ត"
 
 msgid "Installed / not configured"
 msgstr "បានដំឡើង / មិនបានកំណត់រចនាសម្ព័ន្ធ"
@@ -46,3 +43,6 @@ msgstr "លំនាំដើម"
 
 msgid "Displayed menus"
 msgstr "ម៉ឺនុយដែលបានបង្ហាញ"
+
+msgid "You do not have permission to modify this item"
+msgstr ""

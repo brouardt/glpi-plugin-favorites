@@ -49,7 +49,6 @@ function plugin_init_favorites(): void
     /** @var array<string, array<string, mixed>> $PLUGIN_HOOKS */
     global $PLUGIN_HOOKS;
 
-
     $plugin = new Plugin();
     if (Session::getLoginUserID() && $plugin->isActivated(PLUGIN_FAVORITES)) {
 
@@ -61,7 +60,6 @@ function plugin_init_favorites(): void
         if (Session::haveRight(PLUGIN_FAVORITES_RIGHTS, READ)) {
             $PLUGIN_HOOKS[Hooks::CHANGE_PROFILE][PLUGIN_FAVORITES] = [Profile::class, 'initProfile'];
             $PLUGIN_HOOKS[Hooks::REDEFINE_MENUS][PLUGIN_FAVORITES] = [Favorite::class, 'redefineMenus'];
-            $PLUGIN_HOOKS[Hooks::AUTO_GET_DROPDOWN][PLUGIN_FAVORITES] = [Favorite::class, 'getDropdown'];
         }
     }
 }

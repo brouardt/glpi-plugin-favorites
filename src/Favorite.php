@@ -31,9 +31,6 @@
 namespace GlpiPlugin\Favorites;
 
 use CommonDBTM;
-use Html;
-use Location;
-use phpDocumentor\Reflection\Type;
 
 if (!defined('GLPI_ROOT')) {
     die("Sorry. You can't access directly to this file");
@@ -41,7 +38,7 @@ if (!defined('GLPI_ROOT')) {
 
 class Favorite extends CommonDBTM
 {
-    public static $rightname = 'plugin_favorites';
+    public static $rightname = PLUGIN_FAVORITES_RIGHTS;
 
     /**
      * @param $nb
@@ -94,6 +91,13 @@ class Favorite extends CommonDBTM
 
                 if (!empty($types)) {
                     foreach ($types as $type) {
+                        if(!is_string($type)
+                            || !class_exists($type)
+                            || !is_a($type, CommonDBTM::class, true)
+                            || !method_exists($type, 'getMenuContent')
+                        ) {
+                            continue;
+                        }
                         $data = $type::getMenuContent();
                         if (isset($data['is_multi_entries']) && $data['is_multi_entries']) {
                             $favorites_menu[PLUGIN_FAVORITES]['content'] += $data;

@@ -27,7 +27,6 @@
 #}
 
 {% import 'components/form/fields_macros.html.twig' as fields %}
-{% set id = item.fields['id'] ?? -1 %}
 
 <div class="asset">
 
@@ -43,7 +42,7 @@
                     <div class="d-flex flex-row flex-wrap flex-xl-nowrap">
                         <div class="row flex-row align-items-start flex-grow-1">
                             <div class="row flex-row">
-                                {% if preference.id is not empty %}
+                                {% if canedit %}
                                     <input type="hidden" name="id" value="{{ preference.id }}"/>
                                 {% endif %}
 

@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Favorite 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-17 13:06+0200\n"
-"PO-Revision-Date: 2026-06-26 18:18+0200\n"
+"PO-Revision-Date: 2026-06-30 09:40+0200\n"
 "Last-Translator: Thierry Brouard <thierry.brouard@free.fr>\n"
 "Language-Team: informatique@sevengroup.fr\n"
 "Language: es_419\n"
@@ -20,34 +20,29 @@ msgstr ""
 "X-Generator: Poedit 3.9\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#, fuzzy
 msgid "Favorites Plugin"
-msgstr "Favorites Plugin"
+msgstr "Plugin de favoritos"
 
-#, fuzzy
 msgid "Favorite"
-msgstr "Favorite"
+msgstr "Favorito"
 
-#, fuzzy
 msgid "Favorites"
-msgstr "Favorites"
+msgstr "Favoritos"
 
-#, fuzzy
 msgid "Installed / not configured"
-msgstr "Installed / not configured"
+msgstr "Instalado / no configurado"
 
-#, fuzzy
 msgid "List"
-msgstr "List"
+msgstr "Lista"
 
-#, fuzzy
 msgid "No results found"
-msgstr "No results found"
+msgstr "No se encontraron resultados"
 
-#, fuzzy
 msgid "Default"
-msgstr "Default"
+msgstr "Predeterminado"
 
-#, fuzzy
 msgid "Displayed menus"
-msgstr "Displayed menus"
+msgstr "Menús mostrados"
+
+msgid "You do not have permission to modify this item"
+msgstr "No tienes permiso para modificar este elemento"

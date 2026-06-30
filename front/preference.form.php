@@ -29,7 +29,6 @@
  */
 
 use GlpiPlugin\Favorites\Preference;
-use GlpiPlugin\Servicecatalog\Main;
 
 if (!isset($_GET['id'])) {
     $_GET['id'] = '';
@@ -41,38 +40,17 @@ if (!isset($_GET['withtemplate'])) {
 $preference = new Preference();
 
 if (isset($_POST['add'])) {
-    $_POST['users_id'] = Session::getLoginUserID();
-    $_POST['types'] = json_encode($_POST['types']);
     $preference->check(-1, CREATE, $_POST);
-    $newID = $preference->add($_POST);
-    Html::back();
+    $preference->add($_POST);
 } else if (isset($_POST['update'])) {
-    $preference->check($_POST['id'], UPDATE);
-    $_POST['types'] = json_encode($_POST['types']);
-    $preference->update($_POST);
-    Html::back();
-} else {
-    $preference->checkGlobal(READ);
-
-    if (Session::getCurrentInterface() == 'central') {
-        Html::header(Preference::getTypeName(2), '', 'favorites', Preference::class);
+    if ((int)$_POST['id'] !== Session::getLoginUserID()) {
+        Session::addMessageAfterRedirect(
+            __s('You do not have permission to modify this item.'),
+            false,
+            WARNING);
     } else {
-        if (Plugin::isPluginActive('servicecatalog')) {
-            Main::showDefaultHeaderHelpdesk(Preference::getTypeName(2), true);
-        } else {
-            Html::helpHeader(Preference::getTypeName(2));
-        }
-    }
-    $preference->display($_GET);
-
-    if (Session::getCurrentInterface() != 'central'
-        && Plugin::isPluginActive('servicecatalog')) {
-        Main::showNavBarFooter('badges');
-    }
-
-    if (Session::getCurrentInterface() == 'central') {
-        Html::footer();
-    } else {
-        Html::helpFooter();
+        $preference->check($_POST['id'], UPDATE);
+        $preference->update($_POST);
     }
 }
+Html::back();

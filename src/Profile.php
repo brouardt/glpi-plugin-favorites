@@ -36,9 +36,13 @@ use Glpi\Application\View\TemplateRenderer;
 use ProfileRight;
 use Session;
 
+if (!defined('GLPI_ROOT')) {
+    die("Sorry. You can't access directly to this file");
+}
+
 class Profile extends \Profile
 {
-    public static $rightname = 'plugin_favorites';
+    public static $rightname = PLUGIN_FAVORITES_RIGHTS;
 
     /**
      * @param CommonGLPI $item

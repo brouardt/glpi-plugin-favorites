@@ -42,3 +42,6 @@ msgstr ""
 
 msgid "Displayed menus"
 msgstr ""
+
+msgid "You do not have permission to modify this item"
+msgstr ""

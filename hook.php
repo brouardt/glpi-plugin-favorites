@@ -49,11 +49,9 @@ function plugin_favorites_install(): bool
     $preference_table = Preference::getTable();
     if (!$DB->tableExists($preference_table)) {
         $DB->doQuery("CREATE TABLE IF NOT EXISTS `$preference_table` (
-         `id` INT $default_key_sign NOT NULL AUTO_INCREMENT,
          `users_id` INT $default_key_sign NOT NULL,
-         `types` TEXT,
-         PRIMARY KEY (`id`), 
-         UNIQUE KEY `users_id` (`users_id`)
+         `types` TEXT, 
+         PRIMARY KEY `users_id`
          ) ENGINE=InnoDB DEFAULT CHARSET=$default_charset COLLATE=$default_collation ROW_FORMAT=DYNAMIC;");
     }
     //execute the whole migration

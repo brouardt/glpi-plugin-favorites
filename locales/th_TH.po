@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Favorite 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-17 13:06+0200\n"
-"PO-Revision-Date: 2026-06-26 18:31+0200\n"
+"PO-Revision-Date: 2026-06-30 10:07+0200\n"
 "Last-Translator: Thierry Brouard <thierry.brouard@free.fr>\n"
 "Language-Team: informatique@sevengroup.fr\n"
 "Language: th_TH\n"
@@ -21,25 +21,28 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid "Favorites Plugin"
-msgstr "收藏夾插件"
+msgstr "ปลั๊กอินรายการโปรด"
 
 msgid "Favorite"
-msgstr "收藏夾"
+msgstr "ที่ชื่นชอบ"
 
 msgid "Favorites"
-msgstr "收藏夾"
+msgstr "รายการโปรด"
 
 msgid "Installed / not configured"
-msgstr "已安裝/未設定"
+msgstr "ติดตั้งแล้ว / ยังไม่ได้กำหนดค่า"
 
 msgid "List"
-msgstr "列表"
+msgstr "รายการ"
 
 msgid "No results found"
-msgstr "未找到結果"
+msgstr "ไม่พบผลลัพธ์"
 
 msgid "Default"
-msgstr "預設"
+msgstr "ค่าเริ่มต้น"
 
 msgid "Displayed menus"
-msgstr "顯示的選單"
+msgstr "เมนูที่แสดง"
+
+msgid "You do not have permission to modify this item"
+msgstr "คุณไม่มีสิทธิ์แก้ไขรายการนี้"
